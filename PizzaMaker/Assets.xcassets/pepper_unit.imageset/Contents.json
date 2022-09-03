@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "chili_unit.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
