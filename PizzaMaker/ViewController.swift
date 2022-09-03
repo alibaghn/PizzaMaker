@@ -14,17 +14,40 @@ class ViewController: UIViewController {
     @IBOutlet weak var mushroomView: UIImageView!
     @IBOutlet weak var pepperView: UIImageView!
     
+    @IBAction func smallButton(_ sender: UIButton) {
+        print("small")
+        UIView.animate(withDuration: 2) {
+            self.crustView.transform = self.crustView.transform.rotated(by: .pi)
+            self.crustView.transform = self.crustView.transform.scaledBy(x: 200/self.crustView.frame.width, y: 200/self.crustView.frame.height)
+        }
+    }
+    
+    @IBAction func mediumButton(_ sender: UIButton) {
+        print("medium")
+        UIView.animate(withDuration: 2) {
+            self.crustView.transform = self.crustView.transform.rotated(by: .pi)
+            self.crustView.transform = self.crustView.transform.scaledBy(x: 250/self.crustView.frame.width, y: 250/self.crustView.frame.height)
+        }
+    }
+    
+    @IBAction func largeButton(_ sender: UIButton) {
+        print("large")
+        UIView.animate(withDuration: 2) {
+            self.crustView.transform = self.crustView.transform.rotated(by: .pi)
+            self.crustView.transform = self.crustView.transform.scaledBy(x: 350/self.crustView.frame.width, y: 350/self.crustView.frame.height)
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let mushroomDrag = UIDragInteraction(delegate: self)
         let pepperDrag = UIDragInteraction(delegate: self)
         mushroomView.addInteraction(mushroomDrag)
         pepperView.addInteraction(pepperDrag)
-        
         let mushroomDrop = UIDropInteraction(delegate: self)
         view.addInteraction(mushroomDrop)
     }
-    
 }
 
 //MARK: - DragDelegate
@@ -71,14 +94,17 @@ extension ViewController: UIDropInteractionDelegate {
             droppedImageView.image = droppedImage
             self.view.addSubview(droppedImageView)
         }
+        
     }
     
 }
 
-//fix items coordinates
 
 
-    
+
+
+
+
 
 
 
