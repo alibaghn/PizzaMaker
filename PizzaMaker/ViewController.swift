@@ -8,17 +8,21 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    
+    @IBOutlet weak var crustView: UIImageView!
     @IBOutlet weak var mushroomView: UIImageView!
     @IBOutlet weak var pepperView: UIImageView!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         let mushroomDrag = UIDragInteraction(delegate: self)
         let pepperDrag = UIDragInteraction(delegate: self)
         mushroomView.addInteraction(mushroomDrag)
         pepperView.addInteraction(pepperDrag)
         
+        let mushroomDrop = UIDropInteraction(delegate: self)
+        view.addInteraction(mushroomDrop)
     }
     
 }
@@ -28,7 +32,6 @@ class ViewController: UIViewController {
 extension ViewController: UIDragInteractionDelegate {
     
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
-        
         let touchedPoint = session.location(in: self.view)
         let touchedImage = view.hitTest(touchedPoint, with: nil) as! UIImageView
         let image = touchedImage.image!
@@ -37,7 +40,6 @@ extension ViewController: UIDragInteractionDelegate {
         item.localObject = image
         print("dragged")
         return [item]
-        
     }
     
 }
@@ -45,6 +47,29 @@ extension ViewController: UIDragInteractionDelegate {
 //MARK: - DropDelegate
 
 extension ViewController: UIDropInteractionDelegate {
+    
+    func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+        return session.canLoadObjects(ofClass: UIImage.self)
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        let dropLocation = session.location(in: view)
+        let operation: UIDropOperation
+        if crustView.frame.contains(dropLocation){
+            operation = .copy
+        } else {
+            operation = .cancel
+        }
+        return UIDropProposal(operation: operation)
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        session.loadObjects(ofClass: UIImage.self) { imageItems in
+            let images = imageItems as! [UIImage]
+            let image = images.first
+            self.crustView.image = image
+        }
+    }
     
 }
     
