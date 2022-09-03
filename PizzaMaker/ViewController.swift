@@ -65,14 +65,19 @@ extension ViewController: UIDropInteractionDelegate {
     
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         session.loadObjects(ofClass: UIImage.self) { imageItems in
-            let images = imageItems as! [UIImage]
-            let image = images.first
-            self.crustView.image = image
+            let droppedImages = imageItems as! [UIImage]
+            let droppedImage = droppedImages.first!
+            let droppedImageView = UIImageView(frame: CGRect(x: self.crustView.center.x, y: self.crustView.center.y, width: 100, height: 100))
+            droppedImageView.image = droppedImage
+            self.view.addSubview(droppedImageView)
         }
     }
     
 }
-    
+
+//fix items coordinates
+
+
     
 
 
