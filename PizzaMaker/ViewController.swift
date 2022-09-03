@@ -12,27 +12,43 @@ class ViewController: UIViewController {
     @IBOutlet weak var pepperView: UIImageView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        let dragInteraction = UIDragInteraction(delegate: self)
-        mushroomView.addInteraction(dragInteraction)
-        //pepperView.addInteraction(dragInteraction)
+        let mushroomDrag = UIDragInteraction(delegate: self)
+        let pepperDrag = UIDragInteraction(delegate: self)
+        mushroomView.addInteraction(mushroomDrag)
+        pepperView.addInteraction(pepperDrag)
+        
     }
     
 }
 
-//MARK: - UIDragInteracionDelegate
+//MARK: - DragDelegate
+
 extension ViewController: UIDragInteractionDelegate {
     
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
-        guard let image = mushroomView.image else {return[]}
+        
+        let touchedPoint = session.location(in: self.view)
+        let touchedImage = view.hitTest(touchedPoint, with: nil) as! UIImageView
+        let image = touchedImage.image!
         let provider = NSItemProvider(object: image)
         let item = UIDragItem(itemProvider: provider)
         item.localObject = image
-        print("mushroom dragged")
+        print("dragged")
         return [item]
+        
     }
     
 }
+
+//MARK: - DropDelegate
+
+extension ViewController: UIDropInteractionDelegate {
+    
+}
+    
+    
 
 
 
