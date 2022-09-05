@@ -9,33 +9,44 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var crustView: UIImageView!
     @IBOutlet weak var mushroomView: UIImageView!
     @IBOutlet weak var pepperView: UIImageView!
     
-    @IBAction func smallButton(_ sender: UIButton) {
-        print("small")
-        UIView.animate(withDuration: 2) {
-            self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-            self.crustView.transform = self.crustView.transform.scaledBy(x: 200/self.crustView.frame.width, y: 200/self.crustView.frame.height)
+    enum PizzaSize {
+    case small, medium, large
+    }
+    
+    func rotateAndTransform(size: PizzaSize){
+        switch size {
+        case .small:
+            UIView.animate(withDuration: 2) {
+                self.crustView.transform = self.crustView.transform.rotated(by: .pi)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: 200/self.crustView.frame.width, y: 200/self.crustView.frame.height)
+            }
+        case .medium:
+            UIView.animate(withDuration: 2) {
+                self.crustView.transform = self.crustView.transform.rotated(by: .pi)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: 250/self.crustView.frame.width, y: 250/self.crustView.frame.height)
+            }
+        case .large:
+            UIView.animate(withDuration: 2) {
+                self.crustView.transform = self.crustView.transform.rotated(by: .pi)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: 300/self.crustView.frame.width, y: 300/self.crustView.frame.height)
+            }
         }
+    }
+    
+    @IBAction func smallButton(_ sender: UIButton) {
+        rotateAndTransform(size: .small)
     }
     
     @IBAction func mediumButton(_ sender: UIButton) {
-        print("medium")
-        UIView.animate(withDuration: 2) {
-            self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-            self.crustView.transform = self.crustView.transform.scaledBy(x: 250/self.crustView.frame.width, y: 250/self.crustView.frame.height)
-        }
+        rotateAndTransform(size: .medium)
     }
     
     @IBAction func largeButton(_ sender: UIButton) {
-        print("large")
-        UIView.animate(withDuration: 2) {
-            self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-            self.crustView.transform = self.crustView.transform.scaledBy(x: 350/self.crustView.frame.width, y: 350/self.crustView.frame.height)
-        }
+        rotateAndTransform(size: .large)
     }
     
     
