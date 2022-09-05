@@ -90,7 +90,7 @@ extension ViewController: UIDropInteractionDelegate {
         session.loadObjects(ofClass: UIImage.self) { imageItems in
             let droppedImages = imageItems as! [UIImage]
             let droppedImage = droppedImages.first!
-            let droppedImageView = UIImageView(frame: CGRect(x: self.crustView.center.x, y: self.crustView.center.y, width: 100, height: 100))
+            let droppedImageView = UIImageView(frame: CGRect(x: self.crustView.center.x - 50, y: self.crustView.center.y - 50, width: 100, height: 100))
             droppedImageView.image = droppedImage
             self.view.addSubview(droppedImageView)
         }
