@@ -9,10 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    enum PizzaSize {
-    case small, medium, large
-    }
-    
     @IBOutlet weak var crustView: UIImageView!
     @IBOutlet weak var mushroomView: UIImageView!
     @IBOutlet weak var pepperView: UIImageView!
@@ -21,11 +17,11 @@ class ViewController: UIViewController {
     func updatePriceLabel(size: PizzaSize){
         switch size {
         case .small:
-            priceLabel.text = "10$"
+            priceLabel.text = K.smallPrice + "$"
         case .medium:
-            priceLabel.text = "20$"
+            priceLabel.text = K.mediumPrice + "$"
         case .large:
-            priceLabel.text = "30$"
+            priceLabel.text = K.largePrice + "$"
         }
     }
     
@@ -34,17 +30,17 @@ class ViewController: UIViewController {
         case .small:
             UIView.animate(withDuration: 2) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-                self.crustView.transform = self.crustView.transform.scaledBy(x: 200/self.crustView.frame.width, y: 200/self.crustView.frame.height)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: K.smallSize/self.crustView.frame.width, y: K.smallSize/self.crustView.frame.height)
             }
         case .medium:
             UIView.animate(withDuration: 2) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-                self.crustView.transform = self.crustView.transform.scaledBy(x: 250/self.crustView.frame.width, y: 250/self.crustView.frame.height)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: K.mediumSize/self.crustView.frame.width, y: K.mediumSize/self.crustView.frame.height)
             }
         case .large:
             UIView.animate(withDuration: 2) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-                self.crustView.transform = self.crustView.transform.scaledBy(x: 300/self.crustView.frame.width, y: 300/self.crustView.frame.height)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: K.largeSize/self.crustView.frame.width, y: K.largeSize/self.crustView.frame.height)
             }
         }
     }
