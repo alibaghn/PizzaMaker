@@ -9,12 +9,24 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    enum PizzaSize {
+    case small, medium, large
+    }
+    
     @IBOutlet weak var crustView: UIImageView!
     @IBOutlet weak var mushroomView: UIImageView!
     @IBOutlet weak var pepperView: UIImageView!
+    @IBOutlet weak var priceLabel: UILabel!
     
-    enum PizzaSize {
-    case small, medium, large
+    func updatePriceLabel(size: PizzaSize){
+        switch size {
+        case .small:
+            priceLabel.text = "10$"
+        case .medium:
+            priceLabel.text = "20$"
+        case .large:
+            priceLabel.text = "30$"
+        }
     }
     
     func rotateAndTransform(size: PizzaSize){
@@ -38,14 +50,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func smallButton(_ sender: UIButton) {
+        updatePriceLabel(size: .small)
         rotateAndTransform(size: .small)
     }
     
     @IBAction func mediumButton(_ sender: UIButton) {
+        updatePriceLabel(size: .medium)
         rotateAndTransform(size: .medium)
     }
     
     @IBAction func largeButton(_ sender: UIButton) {
+        updatePriceLabel(size: .large)
         rotateAndTransform(size: .large)
     }
     
