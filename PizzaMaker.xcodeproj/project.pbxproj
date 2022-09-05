@@ -14,7 +14,6 @@
 		0C3CF14128C2BE320079505F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C3CF14028C2BE320079505F /* Assets.xcassets */; };
 		0C3CF14428C2BE320079505F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3CF14228C2BE320079505F /* LaunchScreen.storyboard */; };
 		0CBE80F328C665A300F95831 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBE80F228C665A300F95831 /* Model.swift */; };
-		0CBE80F528C6664500F95831 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBE80F428C6664500F95831 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		0C3CF14328C2BE320079505F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C3CF14528C2BE320079505F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CBE80F228C665A300F95831 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		0CBE80F428C6664500F95831 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +61,6 @@
 				0CBE80F028C663DE00F95831 /* Controller */,
 				0CBE80F128C6640200F95831 /* Model */,
 				0C3CF13728C2BE310079505F /* AppDelegate.swift */,
-				0CBE80F428C6664500F95831 /* Constants.swift */,
 				0C3CF13928C2BE310079505F /* SceneDelegate.swift */,
 				0C3CF13D28C2BE310079505F /* Main.storyboard */,
 				0C3CF14028C2BE320079505F /* Assets.xcassets */,
@@ -160,7 +157,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CBE80F528C6664500F95831 /* Constants.swift in Sources */,
 				0C3CF13C28C2BE310079505F /* ViewController.swift in Sources */,
 				0C3CF13828C2BE310079505F /* AppDelegate.swift in Sources */,
 				0C3CF13A28C2BE310079505F /* SceneDelegate.swift in Sources */,
