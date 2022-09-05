@@ -115,29 +115,27 @@ extension ViewController: UIDropInteractionDelegate {
             let bottomImage = self.crustView.image
             let topImage = droppedImage
             let size = self.crustView.frame.size
+            UIGraphicsBeginImageContextWithOptions(size, false, 0)
+            let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            bottomImage!.draw(in: areaSize)
             
-            func mergeImages(){
-                UIGraphicsBeginImageContextWithOptions(size, false, 0)
-                let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-                bottomImage!.draw(in: areaSize)
-                topImage.draw(in: CGRect(x: areaSize.midX - 50, y: areaSize.midY - 50, width: 100, height: 100), blendMode: .normal, alpha: 1)
-                topImage.draw(in: CGRect(x: areaSize.midX + 10, y: areaSize.midY + 10, width: 100, height: 100), blendMode: .normal, alpha: 1)
-                topImage.draw(in: CGRect(x: areaSize.midX - 110, y: areaSize.midY - 110, width: 100, height: 100), blendMode: .normal, alpha: 1)
-                topImage.draw(in: CGRect(x: areaSize.midX + 10, y: areaSize.midY - 110, width: 100, height: 100), blendMode: .normal, alpha: 1)
-                topImage.draw(in: CGRect(x: areaSize.midX - 110, y: areaSize.midY + 10, width: 100, height: 100), blendMode: .normal, alpha: 1)
+            func duplicateTopImage(toppingCoordinates: [(Double,Double)]){
+                for tuple in toppingCoordinates {
+                    topImage.draw(in: CGRect(x: areaSize.midX + tuple.0, y: areaSize.midY + tuple.1, width: 100, height: 100), blendMode: .normal, alpha: 1)
+                }
                 let newImage = UIGraphicsGetImageFromCurrentImageContext()!
                 UIGraphicsEndImageContext()
                 self.crustView.image = newImage
             }
             
-            mergeImages()
+            duplicateTopImage(toppingCoordinates: MediumPizza.toppingCoordinates)
         }
         
     }
     
 }
 
-//[(-50,-50),(10,10),(-110,-110),(10,-110),(-110,10)]
+
 
 
 
