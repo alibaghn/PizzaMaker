@@ -93,10 +93,10 @@ extension ViewController: UIDropInteractionDelegate {
             let bottomImage = self.crustView.image
             let topImage = droppedImage
             let size = self.crustView.frame.size
-            UIGraphicsBeginImageContext(size)
+            UIGraphicsBeginImageContextWithOptions(size, false, 0)
             let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
             bottomImage!.draw(in: areaSize)
-            topImage.draw(in: areaSize, blendMode: .normal, alpha: 1)
+            topImage.draw(in: CGRect(x: areaSize.midX - 50, y: areaSize.midY - 50, width: 100, height: 100), blendMode: .normal, alpha: 1)
             let newImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
             self.crustView.image = newImage
