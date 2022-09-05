@@ -92,7 +92,18 @@ extension ViewController: UIDropInteractionDelegate {
             let droppedImage = droppedImages.first!
             let droppedImageView = UIImageView(frame: CGRect(x: self.crustView.center.x - 50, y: self.crustView.center.y - 50, width: 100, height: 100))
             droppedImageView.image = droppedImage
-            self.view.addSubview(droppedImageView)
+            //self.view.addSubview(droppedImageView)
+            
+            var bottomImage = self.crustView.image
+            var topImage = droppedImage
+            var size = self.crustView.frame.size
+            UIGraphicsBeginImageContext(size)
+            let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            bottomImage!.draw(in: areaSize)
+            topImage.draw(in: areaSize, blendMode: .normal, alpha: 1)
+            var newImage = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            self.crustView.image = newImage
         }
         
     }
