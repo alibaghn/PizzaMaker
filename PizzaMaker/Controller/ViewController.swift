@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pepperView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     
+    
     func updatePriceLabel(size: PizzaSize){
         switch size {
         case .SmallPizza:
@@ -28,17 +29,17 @@ class ViewController: UIViewController {
     func rotateAndTransform(size: PizzaSize){
         switch size {
         case .SmallPizza:
-            UIView.animate(withDuration: 2) {
+            UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
                 self.crustView.transform = self.crustView.transform.scaledBy(x: SmallPizza.size/self.crustView.frame.width, y: SmallPizza.size/self.crustView.frame.height)
             }
         case .MediumPizza:
-            UIView.animate(withDuration: 2) {
+            UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
                 self.crustView.transform = self.crustView.transform.scaledBy(x: MediumPizza.size/self.crustView.frame.width, y: MediumPizza.size/self.crustView.frame.height)
             }
         case .LargePizza:
-            UIView.animate(withDuration: 2) {
+            UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
                 self.crustView.transform = self.crustView.transform.scaledBy(x: LargePizza.size/self.crustView.frame.width, y: LargePizza.size/self.crustView.frame.height)
             }
@@ -58,6 +59,13 @@ class ViewController: UIViewController {
     @IBAction func largeButton(_ sender: UIButton) {
         updatePriceLabel(size: .LargePizza)
         rotateAndTransform(size: .LargePizza)
+    }
+    
+    @IBAction func addButton(_ sender: Any) {
+        print("Added to cart")
+        UIView.animate(withDuration: K.animationDuration) {
+            self.crustView.transform = self.crustView.transform.scaledBy(x: K.inBoxRatio, y: K.inBoxRatio)
+        }
     }
     
     
