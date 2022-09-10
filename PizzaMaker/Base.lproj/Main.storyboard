@@ -51,8 +51,12 @@
                                     <action selector="largeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dKG-h6-3HX"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="box_inside" translatesAutoresizingMaskIntoConstraints="NO" id="llA-Rq-SRM">
+                                <rect key="frame" x="142" y="232" width="98" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crust" translatesAutoresizingMaskIntoConstraints="NO" id="bE5-TZ-9gW">
-                                <rect key="frame" x="82" y="107" width="250" height="250"/>
+                                <rect key="frame" x="66" y="149" width="250" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnE-fx-j1S">
@@ -68,7 +72,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <action selector="addButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1K4-s3-EIa"/>
+                                    <action selector="addToCartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9vA-e6-m4Q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -76,6 +80,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="boxBottom" destination="llA-Rq-SRM" id="Npd-DB-n6T"/>
                         <outlet property="crustView" destination="bE5-TZ-9gW" id="YdI-YC-a5K"/>
                         <outlet property="mushroomView" destination="9Pz-03-AWJ" id="ldb-vx-mq4"/>
                         <outlet property="pepperView" destination="0n8-tW-ALK" id="UG8-hj-7FU"/>
@@ -88,6 +93,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="box_inside" width="500" height="478"/>
         <image name="crust" width="909" height="909"/>
         <image name="mushroom" width="640" height="640"/>
         <image name="pepper" width="2000" height="2000"/>

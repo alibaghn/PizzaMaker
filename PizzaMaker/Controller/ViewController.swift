@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mushroomView: UIImageView!
     @IBOutlet weak var pepperView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var boxBottom: UIImageView!
     
     
     func updatePriceLabel(size: PizzaSize){
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func rotateAndTransform(size: PizzaSize){
+    func transformCrust(size: PizzaSize){
         switch size {
         case .SmallPizza:
             UIView.animate(withDuration: K.animationDuration) {
@@ -48,25 +49,30 @@ class ViewController: UIViewController {
     
     @IBAction func smallButton(_ sender: UIButton) {
         updatePriceLabel(size: .SmallPizza)
-        rotateAndTransform(size: .SmallPizza)
+        transformCrust(size: .SmallPizza)
     }
     
     @IBAction func mediumButton(_ sender: UIButton) {
         updatePriceLabel(size: .MediumPizza)
-        rotateAndTransform(size: .MediumPizza)
+        transformCrust(size: .MediumPizza)
     }
     
     @IBAction func largeButton(_ sender: UIButton) {
         updatePriceLabel(size: .LargePizza)
-        rotateAndTransform(size: .LargePizza)
+        transformCrust(size: .LargePizza)
     }
     
-    @IBAction func addButton(_ sender: Any) {
+    @IBAction func addToCartButton(_ sender: Any) {
         print("Added to cart")
         UIView.animate(withDuration: K.animationDuration) {
-            self.crustView.transform = self.crustView.transform.scaledBy(x: K.inBoxRatio, y: K.inBoxRatio)
+            self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio)
+        }
+        
+        UIView.animate(withDuration: K.animationDuration) {
+            self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
         }
     }
+    
     
     
     override func viewDidLoad() {

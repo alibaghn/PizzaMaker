@@ -8,6 +8,7 @@
 import Foundation
 
 struct K {
-    static let inBoxRatio = 0.4
+    static let pizzaInBoxRatio = 0.4
     static let animationDuration = TimeInterval(2)
+    static let boxRatio = 2.0
 }
