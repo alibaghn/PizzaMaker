@@ -65,7 +65,7 @@ class ViewController: UIViewController {
     
     func addToCart() {
         UIView.animate(withDuration: K.animationDuration) {
-            self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: 200)
+            self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
             self.boxView.transform = self.boxView.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
             
         }
