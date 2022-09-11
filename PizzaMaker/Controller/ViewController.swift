@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func transformCrust(size: PizzaSize){
+    func onChangeCrustSize(size: PizzaSize){
         switch size {
         case .SmallPizza:
             UIView.animate(withDuration: K.animationDuration) {
@@ -50,32 +50,30 @@ class ViewController: UIViewController {
     
     @IBAction func smallButton(_ sender: UIButton) {
         updatePriceLabel(size: .SmallPizza)
-        transformCrust(size: .SmallPizza)
+        onChangeCrustSize(size: .SmallPizza)
     }
     
     @IBAction func mediumButton(_ sender: UIButton) {
         updatePriceLabel(size: .MediumPizza)
-        transformCrust(size: .MediumPizza)
+        onChangeCrustSize(size: .MediumPizza)
     }
     
     @IBAction func largeButton(_ sender: UIButton) {
         updatePriceLabel(size: .LargePizza)
-        transformCrust(size: .LargePizza)
+        onChangeCrustSize(size: .LargePizza)
     }
     
-    func animateAddToCart() {
+    func addToCart() {
         UIView.animate(withDuration: K.animationDuration) {
-            self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio)
-        }
-        
-        UIView.animate(withDuration: K.animationDuration) {
+            self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: 200)
             self.boxView.transform = self.boxView.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+            
         }
     }
     
     
     @IBAction func addToCartButton(_ sender: Any) {
-       animateAddToCart()
+       addToCart()
     }
     
     
