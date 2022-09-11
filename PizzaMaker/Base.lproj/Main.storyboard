@@ -51,14 +51,6 @@
                                     <action selector="largeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dKG-h6-3HX"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="box_inside" translatesAutoresizingMaskIntoConstraints="NO" id="llA-Rq-SRM">
-                                <rect key="frame" x="142" y="232" width="98" height="84"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crust" translatesAutoresizingMaskIntoConstraints="NO" id="bE5-TZ-9gW">
-                                <rect key="frame" x="66" y="149" width="250" height="250"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnE-fx-j1S">
                                 <rect key="frame" x="179" y="476" width="31" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -75,12 +67,32 @@
                                     <action selector="addToCartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9vA-e6-m4Q"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qGc-3O-S3j" userLabel="BoxView">
+                                <rect key="frame" x="79" y="176" width="225" height="207"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="box_top" translatesAutoresizingMaskIntoConstraints="NO" id="hy9-MD-jcC">
+                                        <rect key="frame" x="20" y="20" width="185" height="85"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="box_inside" translatesAutoresizingMaskIntoConstraints="NO" id="llA-Rq-SRM">
+                                        <rect key="frame" x="63" y="103" width="98" height="84"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crust" translatesAutoresizingMaskIntoConstraints="NO" id="bE5-TZ-9gW">
+                                <rect key="frame" x="66" y="149" width="250" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="boxBottom" destination="llA-Rq-SRM" id="Npd-DB-n6T"/>
+                        <outlet property="boxTop" destination="hy9-MD-jcC" id="2sH-bt-Wsj"/>
+                        <outlet property="boxView" destination="qGc-3O-S3j" id="jrz-i7-ieQ"/>
                         <outlet property="crustView" destination="bE5-TZ-9gW" id="YdI-YC-a5K"/>
                         <outlet property="mushroomView" destination="9Pz-03-AWJ" id="ldb-vx-mq4"/>
                         <outlet property="pepperView" destination="0n8-tW-ALK" id="UG8-hj-7FU"/>
@@ -94,6 +106,7 @@
     </scenes>
     <resources>
         <image name="box_inside" width="500" height="478"/>
+        <image name="box_top" width="500" height="478"/>
         <image name="crust" width="909" height="909"/>
         <image name="mushroom" width="640" height="640"/>
         <image name="pepper" width="2000" height="2000"/>
