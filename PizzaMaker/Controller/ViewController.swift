@@ -64,16 +64,30 @@ class ViewController: UIViewController {
     }
     
     func addToCart() {
-        UIView.animate(withDuration: K.animationDuration) {
-            self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
-            self.boxView.transform = self.boxView.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+        
+        UIView.animateKeyframes(withDuration: 4, delay: 0) {
+            
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
+                self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
+                self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+                self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
+                self.boxTop.alpha = 1
+            }
             
         }
+        
+        //        UIView.animate(withDuration: K.animationDuration) {
+        //            self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
+        //            self.boxView.transform = self.boxView.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+        //        }
     }
     
     
     @IBAction func addToCartButton(_ sender: Any) {
-       addToCart()
+        addToCart()
     }
     
     
