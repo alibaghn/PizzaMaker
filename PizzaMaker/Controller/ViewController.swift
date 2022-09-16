@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var boxBottom: UIImageView!
     @IBOutlet weak var boxTop: UIImageView!
-    @IBOutlet weak var boxView: UIView!
     
     func updatePriceLabel(size: PizzaSize){
         switch size {
@@ -79,10 +78,6 @@ class ViewController: UIViewController {
             
         }
         
-        //        UIView.animate(withDuration: K.animationDuration) {
-        //            self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
-        //            self.boxView.transform = self.boxView.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
-        //        }
     }
     
     
@@ -151,14 +146,23 @@ extension ViewController: UIDropInteractionDelegate {
             bottomImage!.draw(in: areaSize)
             
             func duplicateTopImage(toppingCoordinates: [(Double,Double)]){
+                
                 for tuple in toppingCoordinates {
+                    let customToppingView:UIImageView = UIImageView(frame: CGRect(x: self.crustView.frame.midX + tuple.0 , y: self.crustView.frame.midY + tuple.1 - 10 , width: 100, height: 100))
+                    customToppingView.image = droppedImage
+                    self.view.addSubview(customToppingView)
+                   
+                    UIView.animate(withDuration: K.animationDuration) {
+                        customToppingView.transform = customToppingView.transform.translatedBy(x: 0, y: +10)
+                    }
+                    
                     topImage.draw(in: CGRect(x: areaSize.midX + tuple.0, y: areaSize.midY + tuple.1, width: 100, height: 100), blendMode: .normal, alpha: 1)
                 }
                 let newImage = UIGraphicsGetImageFromCurrentImageContext()!
                 UIGraphicsEndImageContext()
                 self.crustView.image = newImage
             }
-            
+
             duplicateTopImage(toppingCoordinates: MediumPizza.toppingCoordinates)
         }
         
