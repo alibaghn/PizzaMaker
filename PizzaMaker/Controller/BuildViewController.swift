@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BuildViewController: UIViewController {
     
     @IBOutlet weak var crustView: UIImageView!
     @IBOutlet weak var mushroomView: UIImageView!
@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var boxBottom: UIImageView!
     @IBOutlet weak var boxTop: UIImageView!
+    
+    
     
     func updatePriceLabel(size: PizzaSize){
         switch size {
@@ -63,28 +65,42 @@ class ViewController: UIViewController {
     }
     
     func addToCart() {
-        
-        UIView.animateKeyframes(withDuration: 4, delay: 0) {
-            
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
-                self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
-                self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
-                self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
-            }
-            
-            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
-                self.boxTop.alpha = 1
-            }
-            
+//        UIView.animateKeyframes(withDuration: 8, delay: 0) {
+//
+//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
+//                self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
+//                self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+//                self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+//            }
+//            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
+//                self.boxTop.alpha = 1
+//            }
+//            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
+//                self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: 300)
+//                self.boxTop.alpha = 0
+//            }
+//    }
+        UIView.animateKeyframes(withDuration: 8, delay: 0, options: []) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
+                         self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
+                         self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+                         self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+                     }
+                     UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
+                         self.boxTop.alpha = 1
+                     }
+                     UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
+                         self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: 300)
+                         self.boxTop.alpha = 0
+                     }
+        } completion: { completion in
+            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = "1"
         }
-        
     }
-    
     
     @IBAction func addToCartButton(_ sender: Any) {
         addToCart()
     }
-    
     
     
     override func viewDidLoad() {
@@ -100,7 +116,7 @@ class ViewController: UIViewController {
 
 //MARK: - DragDelegate
 
-extension ViewController: UIDragInteractionDelegate {
+extension BuildViewController: UIDragInteractionDelegate {
     
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
         let touchedPoint = session.location(in: self.view)
@@ -117,7 +133,7 @@ extension ViewController: UIDragInteractionDelegate {
 
 //MARK: - DropDelegate
 
-extension ViewController: UIDropInteractionDelegate {
+extension BuildViewController: UIDropInteractionDelegate {
     
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: UIImage.self)
@@ -146,26 +162,21 @@ extension ViewController: UIDropInteractionDelegate {
             bottomImage!.draw(in: areaSize)
             
             func duplicateTopImage(toppingCoordinates: [(Double,Double)]){
-                
                 for tuple in toppingCoordinates {
                     let customToppingView:UIImageView = UIImageView(frame: CGRect(x: self.crustView.frame.midX + tuple.0 , y: self.crustView.frame.midY + tuple.1 - 10 , width: 100, height: 100))
                     customToppingView.image = droppedImage
                     self.view.addSubview(customToppingView)
-                   
                     UIView.animate(withDuration: K.animationDuration) {
                         customToppingView.transform = customToppingView.transform.translatedBy(x: 0, y: +10)
                     }
-                    
                     topImage.draw(in: CGRect(x: areaSize.midX + tuple.0, y: areaSize.midY + tuple.1, width: 100, height: 100), blendMode: .normal, alpha: 1)
                 }
                 let newImage = UIGraphicsGetImageFromCurrentImageContext()!
                 UIGraphicsEndImageContext()
                 self.crustView.image = newImage
             }
-
             duplicateTopImage(toppingCoordinates: MediumPizza.toppingCoordinates)
         }
-        
     }
     
 }
