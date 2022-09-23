@@ -15,6 +15,8 @@ class BuildViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var boxBottom: UIImageView!
     @IBOutlet weak var boxTop: UIImageView!
+    @IBOutlet weak var inCartLabel: UILabel!
+    var modelController = ModelController()
     
     
     
@@ -111,6 +113,7 @@ class BuildViewController: UIViewController {
         pepperView.addInteraction(pepperDrag)
         let mushroomDrop = UIDropInteraction(delegate: self)
         view.addInteraction(mushroomDrop)
+        inCartLabel.text = String(modelController.cartItems)
     }
 }
 
