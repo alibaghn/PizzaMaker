@@ -7,7 +7,8 @@
 
 import UIKit
 
-class BuildViewController: UIViewController {
+
+class BuildViewController: UIViewController, CartDelegate  {
     
     @IBOutlet weak var crustView: UIImageView!
     @IBOutlet weak var mushroomView: UIImageView!
@@ -17,6 +18,11 @@ class BuildViewController: UIViewController {
     @IBOutlet weak var boxTop: UIImageView!
     @IBOutlet weak var inCartLabel: UILabel!
     var modelController = ModelController()
+    
+    func didCartUpdate() {
+        inCartLabel.text = String(modelController.cartItems)
+    }
+    
     
     
     
@@ -67,37 +73,25 @@ class BuildViewController: UIViewController {
     }
     
     func addToCart() {
-//        UIView.animateKeyframes(withDuration: 8, delay: 0) {
-//
-//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
-//                self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
-//                self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
-//                self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
-//            }
-//            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
-//                self.boxTop.alpha = 1
-//            }
-//            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
-//                self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: 300)
-//                self.boxTop.alpha = 0
-//            }
-//    }
-        UIView.animateKeyframes(withDuration: 8, delay: 0, options: []) {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
-                         self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
-                         self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
-                         self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
-                     }
-                     UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
-                         self.boxTop.alpha = 1
-                     }
-                     UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
-                         self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: 300)
-                         self.boxTop.alpha = 0
-                     }
-        } completion: { completion in
-            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = "1"
-        }
+        
+        modelController.cartItems += 1
+        
+        //        UIView.animateKeyframes(withDuration: 8, delay: 0, options: []) {
+        //            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
+        //                         self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
+        //                         self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+        //                         self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+        //                     }
+        //                     UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
+        //                         self.boxTop.alpha = 1
+        //                     }
+        //                     UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
+        //                         self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: 300)
+        //                         self.boxTop.alpha = 0
+        //                     }
+        //        } completion: { completion in
+        //            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = "1"
+        //        }
     }
     
     @IBAction func addToCartButton(_ sender: Any) {
@@ -107,13 +101,15 @@ class BuildViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        inCartLabel.text = String(modelController.cartItems)
+        modelController.cartDelegate = self
         let mushroomDrag = UIDragInteraction(delegate: self)
         let pepperDrag = UIDragInteraction(delegate: self)
         mushroomView.addInteraction(mushroomDrag)
         pepperView.addInteraction(pepperDrag)
         let mushroomDrop = UIDropInteraction(delegate: self)
         view.addInteraction(mushroomDrop)
-        inCartLabel.text = String(modelController.cartItems)
+        
     }
 }
 
@@ -183,6 +179,7 @@ extension BuildViewController: UIDropInteractionDelegate {
     }
     
 }
+
 
 
 
