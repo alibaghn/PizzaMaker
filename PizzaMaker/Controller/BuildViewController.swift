@@ -17,7 +17,7 @@ class BuildViewController: UIViewController, CartDelegate  {
     @IBOutlet weak var boxBottom: UIImageView!
     @IBOutlet weak var boxTop: UIImageView!
     @IBOutlet weak var inCartLabel: UILabel!
-    var modelController = ModelController()
+    let modelController = ModelController()
     
     func didCartUpdate() {
         inCartLabel.text = String(modelController.cartItems)
