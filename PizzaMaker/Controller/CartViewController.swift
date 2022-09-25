@@ -8,10 +8,15 @@
 import UIKit
 
 class CartViewController: UIViewController{
+
+    @IBOutlet weak var inCartLabel: UILabel!
+    let modelController = ModelController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        inCartLabel.text = String(modelController.cartItems)
     }
+    
     
 }

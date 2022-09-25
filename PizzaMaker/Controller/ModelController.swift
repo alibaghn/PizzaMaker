@@ -10,12 +10,13 @@ import Foundation
 
 
 class ModelController {
+    
+    var cartDelegate: CartDelegate?
     var cartItems = 0 {
         didSet {
             cartDelegate?.didCartUpdate()
         }
     }
-    var cartDelegate: CartDelegate?
     
 }
 
