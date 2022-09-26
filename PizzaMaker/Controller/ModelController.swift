@@ -11,6 +11,7 @@ import Foundation
 
 class ModelController {
     
+    static let shared = ModelController()
     var cartDelegate: CartDelegate?
     var cartItems = 0 {
         didSet {

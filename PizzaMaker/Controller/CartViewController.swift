@@ -10,7 +10,7 @@ import UIKit
 class CartViewController: UIViewController{
 
     @IBOutlet weak var inCartLabel: UILabel!
-    var modelController: ModelController!
+    let modelController = ModelController.shared
     
     
     override func viewDidLoad() {

@@ -18,12 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         print("scene loaded")
-        if let tabBarController = window?.rootViewController as? UITabBarController {
-            if let buildViewController = tabBarController.viewControllers? [0] as? BuildViewController, let cartViewController = tabBarController.viewControllers? [1] as? CartViewController  {
-                buildViewController.modelController = ModelController()
-                cartViewController.modelController = buildViewController.modelController
-            }
-        }
+//        if let tabBarController = window?.rootViewController as? UITabBarController {
+//            if let buildViewController = tabBarController.viewControllers? [0] as? BuildViewController, let cartViewController = tabBarController.viewControllers? [1] as? CartViewController  {
+//                buildViewController.modelController = ModelController()
+//                cartViewController.modelController = buildViewController.modelController
+//            }
+//        }
         
     }
 
