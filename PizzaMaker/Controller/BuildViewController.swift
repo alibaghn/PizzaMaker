@@ -17,7 +17,7 @@ class BuildViewController: UIViewController, CartDelegate  {
     @IBOutlet weak var boxBottom: UIImageView!
     @IBOutlet weak var boxTop: UIImageView!
     @IBOutlet weak var inCartLabel: UILabel!
-    let modelController = ModelController()
+    var modelController: ModelController!
     
     func didCartUpdate() {
         inCartLabel.text = String(modelController.cartItems)
@@ -101,6 +101,7 @@ class BuildViewController: UIViewController, CartDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view loaded")
         inCartLabel.text = String(modelController.cartItems)
         modelController.cartDelegate = self
         let mushroomDrag = UIDragInteraction(delegate: self)
@@ -109,8 +110,8 @@ class BuildViewController: UIViewController, CartDelegate  {
         pepperView.addInteraction(pepperDrag)
         let mushroomDrop = UIDropInteraction(delegate: self)
         view.addInteraction(mushroomDrop)
-        
     }
+    
 }
 
 //MARK: - DragDelegate

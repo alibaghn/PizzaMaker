@@ -9,18 +9,24 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        //TODO: access view controller from here and pass instance of model controller.
+        print("launched")
+//        // Override point for customization after application launch.
+//        if let buildViewController = window?.rootViewController?.tabBarController?.viewControllers?[0] as? BuildViewController {
+//            print("model controller set")
+//            buildViewController.modelController = ModelController()
+//            print("model controller set")
+//        }
         return true
     }
 
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
