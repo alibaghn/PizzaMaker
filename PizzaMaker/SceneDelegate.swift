@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            }
 //        }
         
+    //TODO: ponder on if let statements above, what are we tryring to achieve?
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

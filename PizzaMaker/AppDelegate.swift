@@ -14,12 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("launched")
-//        // Override point for customization after application launch.
-//        if let buildViewController = window?.rootViewController?.tabBarController?.viewControllers?[0] as? BuildViewController {
-//            print("model controller set")
-//            buildViewController.modelController = ModelController()
-//            print("model controller set")
-//        }
+        // Override point for customization after application launch.
+
         return true
     }
 
