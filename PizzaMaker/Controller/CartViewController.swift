@@ -7,21 +7,15 @@
 
 import UIKit
 
-class CartViewController: UIViewController{
-
-    @IBOutlet weak var inCartLabel: UILabel!
+class CartViewController: UIViewController {
+    @IBOutlet var inCartLabel: UILabel!
     let modelController = ModelController.shared
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         inCartLabel.text = String(modelController.cartItems)
     }
-    
-    
-    
 }

@@ -7,26 +7,19 @@
 
 import UIKit
 
-
-class BuildViewController: UIViewController, CartDelegate  {
-
-    @IBOutlet weak var crustView: UIImageView!
-    @IBOutlet weak var mushroomView: UIImageView!
-    @IBOutlet weak var pepperView: UIImageView!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var boxBottom: UIImageView!
-    @IBOutlet weak var boxTop: UIImageView!
-    @IBOutlet weak var inCartLabel: UILabel!
+class BuildViewController: UIViewController {
+    @IBOutlet var crustView: UIImageView!
+    @IBOutlet var mushroomView: UIImageView!
+    @IBOutlet var pepperView: UIImageView!
+    @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var boxBottom: UIImageView!
+    @IBOutlet var boxTop: UIImageView!
+    @IBOutlet var inCartLabel: UILabel!
     var modelController = ModelController.shared
+
     
-    func didCartUpdate() {
-        inCartLabel.text = String(modelController.cartItems)
-    }
-    
-    
-    
-    
-    func updatePriceLabel(size: PizzaSize){
+
+    func updatePriceLabel(size: PizzaSize) {
         switch size {
         case .SmallPizza:
             priceLabel.text = SmallPizza.priceLabel + "$"
@@ -36,8 +29,8 @@ class BuildViewController: UIViewController, CartDelegate  {
             priceLabel.text = LargePizza.priceLabel + "$"
         }
     }
-    
-    func onChangeCrustSize(size: PizzaSize){
+
+    func onChangeCrustSize(size: PizzaSize) {
         switch size {
         case .SmallPizza:
             UIView.animate(withDuration: K.animationDuration) {
@@ -56,54 +49,39 @@ class BuildViewController: UIViewController, CartDelegate  {
             }
         }
     }
-    
+
     @IBAction func smallButton(_ sender: UIButton) {
         updatePriceLabel(size: .SmallPizza)
         onChangeCrustSize(size: .SmallPizza)
     }
-    
+
     @IBAction func mediumButton(_ sender: UIButton) {
         updatePriceLabel(size: .MediumPizza)
         onChangeCrustSize(size: .MediumPizza)
     }
-    
+
     @IBAction func largeButton(_ sender: UIButton) {
         updatePriceLabel(size: .LargePizza)
         onChangeCrustSize(size: .LargePizza)
     }
-    
+
     func addToCart() {
         
         modelController.cartItems += 1
         
-        //        UIView.animateKeyframes(withDuration: 8, delay: 0, options: []) {
-        //            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
-        //                         self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
-        //                         self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
-        //                         self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
-        //                     }
-        //                     UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
-        //                         self.boxTop.alpha = 1
-        //                     }
-        //                     UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
-        //                         self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: 300)
-        //                         self.boxTop.alpha = 0
-        //                     }
-        //        } completion: { completion in
-        //            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = "1"
-        //        }
     }
-    
+
     @IBAction func addToCartButton(_ sender: Any) {
         addToCart()
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view loaded")
         inCartLabel.text = String(modelController.cartItems)
-        modelController.cartDelegate = self
+        modelController.didCartUpdate = {
+            self.inCartLabel.text = String(self.modelController.cartItems)
+        }
         let mushroomDrag = UIDragInteraction(delegate: self)
         let pepperDrag = UIDragInteraction(delegate: self)
         mushroomView.addInteraction(mushroomDrag)
@@ -111,15 +89,13 @@ class BuildViewController: UIViewController, CartDelegate  {
         let mushroomDrop = UIDropInteraction(delegate: self)
         view.addInteraction(mushroomDrop)
     }
-    
 }
 
-//MARK: - DragDelegate
+// MARK: - DragDelegate
 
 extension BuildViewController: UIDragInteractionDelegate {
-    
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
-        let touchedPoint = session.location(in: self.view)
+        let touchedPoint = session.location(in: view)
         let touchedImage = view.hitTest(touchedPoint, with: nil) as! UIImageView
         let image = touchedImage.image!
         let provider = NSItemProvider(object: image)
@@ -128,28 +104,26 @@ extension BuildViewController: UIDragInteractionDelegate {
         print("dragged")
         return [item]
     }
-    
 }
 
-//MARK: - DropDelegate
+// MARK: - DropDelegate
 
 extension BuildViewController: UIDropInteractionDelegate {
-    
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: UIImage.self)
     }
-    
+
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
         let dropLocation = session.location(in: view)
         let operation: UIDropOperation
-        if crustView.frame.contains(dropLocation){
+        if crustView.frame.contains(dropLocation) {
             operation = .copy
         } else {
             operation = .cancel
         }
         return UIDropProposal(operation: operation)
     }
-    
+
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         session.loadObjects(ofClass: UIImage.self) { imageItems in
             let droppedImages = imageItems as! [UIImage]
@@ -160,10 +134,10 @@ extension BuildViewController: UIDropInteractionDelegate {
             UIGraphicsBeginImageContextWithOptions(size, false, 0)
             let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
             bottomImage!.draw(in: areaSize)
-            
-            func duplicateTopImage(toppingCoordinates: [(Double,Double)]){
+
+            func duplicateTopImage(toppingCoordinates: [(Double, Double)]) {
                 for tuple in toppingCoordinates {
-                    let customToppingView:UIImageView = UIImageView(frame: CGRect(x: self.crustView.frame.midX + tuple.0 , y: self.crustView.frame.midY + tuple.1 - 10 , width: 100, height: 100))
+                    let customToppingView: UIImageView = .init(frame: CGRect(x: self.crustView.frame.midX + tuple.0, y: self.crustView.frame.midY + tuple.1 - 10, width: 100, height: 100))
                     customToppingView.image = droppedImage
                     self.view.addSubview(customToppingView)
                     UIView.animate(withDuration: K.animationDuration) {
@@ -178,20 +152,4 @@ extension BuildViewController: UIDropInteractionDelegate {
             duplicateTopImage(toppingCoordinates: MediumPizza.toppingCoordinates)
         }
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

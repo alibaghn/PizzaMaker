@@ -7,19 +7,14 @@
 
 import Foundation
 
-
-
 class ModelController {
-    
     static let shared = ModelController()
-    var cartDelegate: CartDelegate?
+
+    var didCartUpdate: (() -> Void)?
+
     var cartItems = 0 {
         didSet {
-            cartDelegate?.didCartUpdate()
+            didCartUpdate?()
         }
     }
-    
 }
-
-
-
