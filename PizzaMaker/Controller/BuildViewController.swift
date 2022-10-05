@@ -17,8 +17,6 @@ class BuildViewController: UIViewController {
     @IBOutlet var inCartLabel: UILabel!
     var modelController = ModelController.shared
 
-    
-
     func updatePriceLabel(size: PizzaSize) {
         switch size {
         case .SmallPizza:
@@ -66,9 +64,23 @@ class BuildViewController: UIViewController {
     }
 
     func addToCart() {
-        
         modelController.cartItems += 1
-        
+        UIView.animateKeyframes(withDuration: 8, delay: 0, options: []) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
+                self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
+                self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+                self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
+                self.boxTop.alpha = 1
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
+                self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: 300)
+                self.boxTop.alpha = 0
+            }
+        } completion: { _ in
+            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = "1"
+        }
     }
 
     @IBAction func addToCartButton(_ sender: Any) {
