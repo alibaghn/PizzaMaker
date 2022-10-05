@@ -11,7 +11,12 @@ enum PizzaSize {
     case SmallPizza, MediumPizza, LargePizza
 }
 
-enum SmallPizza {
+enum Toppings {
+    case Mushroom, Pepper
+}
+
+struct SmallPizza {
+    var toppings: [Toppings]?
     static let price = 10.0
     static let size = 200.0
     static let toppingCoordinates: [(Double, Double)] = [(-50, -50), (10, 10), (-110, -110), (10, -110), (-110, 10)]
@@ -20,7 +25,8 @@ enum SmallPizza {
     }
 }
 
-enum MediumPizza {
+struct MediumPizza {
+    var toppings: [Toppings]?
     static let price = 20.0
     static let size = 250.0
     static let toppingCoordinates: [(Double, Double)] = [(-50, -50), (10, 10), (-110, -110), (10, -110), (-110, 10)]
@@ -29,7 +35,8 @@ enum MediumPizza {
     }
 }
 
-enum LargePizza {
+struct LargePizza {
+    var toppings: [Toppings]?
     static let price = 30.0
     static let size = 300.0
     static let toppingCoordinates: [(Double, Double)] = [(-50, -50), (10, 10), (-110, -110), (10, -110), (-110, 10)]

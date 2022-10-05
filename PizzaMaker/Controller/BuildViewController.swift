@@ -17,6 +17,7 @@ class BuildViewController: UIViewController {
     @IBOutlet var inCartLabel: UILabel!
     var modelController = ModelController.shared
 
+
     func updatePriceLabel(size: PizzaSize) {
         switch size {
         case .SmallPizza:
@@ -79,7 +80,7 @@ class BuildViewController: UIViewController {
                 self.boxTop.alpha = 0
             }
         } completion: { _ in
-            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = "1"
+            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItems)
         }
     }
 
@@ -162,6 +163,7 @@ extension BuildViewController: UIDropInteractionDelegate {
                 self.crustView.image = newImage
             }
             duplicateTopImage(toppingCoordinates: MediumPizza.toppingCoordinates)
+            
         }
     }
 }
