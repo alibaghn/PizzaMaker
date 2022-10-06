@@ -17,7 +17,7 @@ class BuildViewController: UIViewController {
     @IBOutlet var inCartLabel: UILabel!
     var modelController = ModelController.shared
     var selectedTopping: Toppings?
-
+    var selectedPizza: Pizza = MediumPizza()
 
     func updatePriceLabel(size: PizzaSize) {
         switch size {
@@ -37,19 +37,21 @@ class BuildViewController: UIViewController {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
                 self.crustView.transform = self.crustView.transform.scaledBy(x: SmallPizza.size/self.crustView.frame.width, y: SmallPizza.size/self.crustView.frame.height)
             }
-            
+            selectedPizza = SmallPizza()
+
         case .MediumPizza:
             UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
                 self.crustView.transform = self.crustView.transform.scaledBy(x: MediumPizza.size/self.crustView.frame.width, y: MediumPizza.size/self.crustView.frame.height)
             }
-            
+            selectedPizza = MediumPizza()
+
         case .LargePizza:
             UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
                 self.crustView.transform = self.crustView.transform.scaledBy(x: LargePizza.size/self.crustView.frame.width, y: LargePizza.size/self.crustView.frame.height)
             }
-            
+            selectedPizza = LargePizza()
         }
     }
 
@@ -66,6 +68,7 @@ class BuildViewController: UIViewController {
     @IBAction func largeButton(_ sender: UIButton) {
         updatePriceLabel(size: .LargePizza)
         onChangeCrustSize(size: .LargePizza)
+        
     }
 
     func addToCart() {
@@ -115,7 +118,7 @@ extension BuildViewController: UIDragInteractionDelegate {
         let touchedPoint = session.location(in: view)
         let touchedImage = view.hitTest(touchedPoint, with: nil) as! UIImageView
         print(touchedImage.tag)
-        func addTopping() {
+        func selectTopping() {
             switch touchedImage.tag {
             case 0:
                 selectedTopping = Toppings.Mushroom
@@ -125,7 +128,7 @@ extension BuildViewController: UIDragInteractionDelegate {
                 selectedTopping = nil
             }
         }
-        addTopping()
+        selectTopping()
         let image = touchedImage.image!
         let provider = NSItemProvider(object: image)
         let item = UIDragItem(itemProvider: provider)
@@ -180,7 +183,8 @@ extension BuildViewController: UIDropInteractionDelegate {
             }
             duplicateTopImage(toppingCoordinates: MediumPizza.toppingCoordinates)
             print(self.selectedTopping as Any)
-            
+            self.selectedPizza.toppings.append(self.selectedTopping!)
+            print(self.selectedPizza.toppings as Any)
         }
     }
 }
