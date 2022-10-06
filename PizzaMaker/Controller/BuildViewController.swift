@@ -16,6 +16,7 @@ class BuildViewController: UIViewController {
     @IBOutlet var boxTop: UIImageView!
     @IBOutlet var inCartLabel: UILabel!
     var modelController = ModelController.shared
+    var selectedTopping: Toppings?
 
 
     func updatePriceLabel(size: PizzaSize) {
@@ -36,16 +37,19 @@ class BuildViewController: UIViewController {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
                 self.crustView.transform = self.crustView.transform.scaledBy(x: SmallPizza.size/self.crustView.frame.width, y: SmallPizza.size/self.crustView.frame.height)
             }
+            
         case .MediumPizza:
             UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
                 self.crustView.transform = self.crustView.transform.scaledBy(x: MediumPizza.size/self.crustView.frame.width, y: MediumPizza.size/self.crustView.frame.height)
             }
+            
         case .LargePizza:
             UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
                 self.crustView.transform = self.crustView.transform.scaledBy(x: LargePizza.size/self.crustView.frame.width, y: LargePizza.size/self.crustView.frame.height)
             }
+            
         }
     }
 
@@ -99,8 +103,8 @@ class BuildViewController: UIViewController {
         let pepperDrag = UIDragInteraction(delegate: self)
         mushroomView.addInteraction(mushroomDrag)
         pepperView.addInteraction(pepperDrag)
-        let mushroomDrop = UIDropInteraction(delegate: self)
-        view.addInteraction(mushroomDrop)
+        let toppingDrop = UIDropInteraction(delegate: self)
+        view.addInteraction(toppingDrop)
     }
 }
 
@@ -110,6 +114,18 @@ extension BuildViewController: UIDragInteractionDelegate {
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
         let touchedPoint = session.location(in: view)
         let touchedImage = view.hitTest(touchedPoint, with: nil) as! UIImageView
+        print(touchedImage.tag)
+        func addTopping() {
+            switch touchedImage.tag {
+            case 0:
+                selectedTopping = Toppings.Mushroom
+            case 1:
+                selectedTopping = Toppings.Pepper
+            default:
+                selectedTopping = nil
+            }
+        }
+        addTopping()
         let image = touchedImage.image!
         let provider = NSItemProvider(object: image)
         let item = UIDragItem(itemProvider: provider)
@@ -163,6 +179,7 @@ extension BuildViewController: UIDropInteractionDelegate {
                 self.crustView.image = newImage
             }
             duplicateTopImage(toppingCoordinates: MediumPizza.toppingCoordinates)
+            print(self.selectedTopping as Any)
             
         }
     }
