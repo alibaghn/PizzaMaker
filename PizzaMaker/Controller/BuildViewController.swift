@@ -68,27 +68,41 @@ class BuildViewController: UIViewController {
     @IBAction func largeButton(_ sender: UIButton) {
         updatePriceLabel(size: .LargePizza)
         onChangeCrustSize(size: .LargePizza)
-        
     }
 
     func addToCart() {
-        modelController.cartItems += 1
         UIView.animateKeyframes(withDuration: 8, delay: 0, options: []) {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
-                self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio).translatedBy(x: 0, y: K.boxTopYtranslation)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio)
                 self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
                 self.boxTop.transform = self.boxTop.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
             }
             UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
                 self.boxTop.alpha = 1
+                self.crustView.alpha = 0
+                self.boxBottom.alpha = 0
             }
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
                 self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: 300)
                 self.boxTop.alpha = 0
             }
         } completion: { _ in
+            self.modelController.cartItems += 1
             self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItems)
+            self.resetViewSettings()
         }
+    }
+
+    func resetViewSettings() {
+        crustView.transform = crustView.transform.scaledBy(x: 1/K.pizzaInBoxRatio, y: 1/K.pizzaInBoxRatio)
+        self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: -300)
+        boxBottom.transform = boxBottom.transform.scaledBy(x: 1/K.boxRatio, y: 1/K.boxRatio)
+        boxTop.transform = boxTop.transform.scaledBy(x: 1/K.boxRatio, y: 1/K.boxRatio)
+        
+        crustView.alpha = 1
+        boxBottom.alpha = 1
+        boxTop.alpha = 1
+        
     }
 
     @IBAction func addToCartButton(_ sender: Any) {
