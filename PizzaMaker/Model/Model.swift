@@ -8,40 +8,40 @@
 import Foundation
 
 enum PizzaSize {
-    case SmallPizza, MediumPizza, LargePizza
+    case Small, Medium, Large
 }
 
 enum Toppings {
     case Mushroom, Pepper
 }
 
-class Pizza {
-    var toppings: [Toppings] = []
-}
-
-class SmallPizza: Pizza {
+struct SmallPizza {
     static let price = 10.0
-    static let size = 200.0
+    static let diameter = 200.0
     static let toppingCoordinates: [(Double, Double)] = [(-50, -50), (10, 10), (-110, -110), (10, -110), (-110, 10)]
+    var toppings: [Toppings] = []
     static var priceLabel: String {
         return String(format: "%.0f", price)
     }
 }
 
-class MediumPizza: Pizza {
+struct MediumPizza {
     static let price = 20.0
-    static let size = 250.0
+    var toppings: [Toppings] = []
+    static let diameter = 250.0
     static let toppingCoordinates: [(Double, Double)] = [(-50, -50), (10, 10), (-110, -110), (10, -110), (-110, 10)]
     static var priceLabel: String {
         return String(format: "%.0f", price)
     }
 }
 
-class LargePizza: Pizza {
+struct LargePizza {
     static let price = 30.0
-    static let size = 300.0
+    var toppings: [Toppings] = []
+    static let diamater = 300.0
     static let toppingCoordinates: [(Double, Double)] = [(-50, -50), (10, 10), (-110, -110), (10, -110), (-110, 10)]
     static var priceLabel: String {
         return String(format: "%.0f", price)
     }
 }
+

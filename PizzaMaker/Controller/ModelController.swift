@@ -9,13 +9,18 @@ import Foundation
 
 class ModelController {
     static let shared = ModelController()
-
     var didCartUpdate: (() -> Void)?
-
-    var cartItems = 0 {
+    var cartItems: Int = 0 {
         didSet {
             didCartUpdate?()
         }
     }
+
+    var cartTotalPrice: Double = 0 {
+        didSet {
+            didCartUpdate?()
+        }
+    }
+
     
 }

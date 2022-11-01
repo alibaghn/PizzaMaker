@@ -16,58 +16,75 @@ class BuildViewController: UIViewController {
     @IBOutlet var boxTop: UIImageView!
     @IBOutlet var inCartLabel: UILabel!
     var modelController = ModelController.shared
-    var selectedTopping: Toppings?
-    var selectedPizza: Pizza = MediumPizza()
+    var currentTopping: Toppings?
+    var selectedToppings: [Toppings] = []
+    var selectedPizza : PizzaSize = .Medium
 
     func updatePriceLabel(size: PizzaSize) {
         switch size {
-        case .SmallPizza:
+        case .Small:
+            selectedPizza = .Small
             priceLabel.text = SmallPizza.priceLabel + "$"
-        case .MediumPizza:
+        case .Medium:
+            selectedPizza = .Medium
             priceLabel.text = MediumPizza.priceLabel + "$"
-        case .LargePizza:
+        case .Large:
+            selectedPizza = .Large
             priceLabel.text = LargePizza.priceLabel + "$"
+        }
+    }
+    
+    func selectedPizzaPrice() -> Double {
+        switch selectedPizza {
+        case .Small:
+            return 10
+        case .Medium:
+            return 20
+        case .Large:
+            return 30
+        default:
+            return 0
         }
     }
 
     func onChangeCrustSize(size: PizzaSize) {
         switch size {
-        case .SmallPizza:
+        case .Small:
             UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-                self.crustView.transform = self.crustView.transform.scaledBy(x: SmallPizza.size/self.crustView.frame.width, y: SmallPizza.size/self.crustView.frame.height)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: SmallPizza.diameter/self.crustView.frame.width, y: SmallPizza.diameter/self.crustView.frame.height)
             }
-            selectedPizza = SmallPizza()
+            selectedPizza = .Small
 
-        case .MediumPizza:
+        case .Medium:
             UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-                self.crustView.transform = self.crustView.transform.scaledBy(x: MediumPizza.size/self.crustView.frame.width, y: MediumPizza.size/self.crustView.frame.height)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: MediumPizza.diameter/self.crustView.frame.width, y: MediumPizza.diameter/self.crustView.frame.height)
             }
-            selectedPizza = MediumPizza()
+            selectedPizza = .Medium
 
-        case .LargePizza:
+        case .Large:
             UIView.animate(withDuration: K.animationDuration) {
                 self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-                self.crustView.transform = self.crustView.transform.scaledBy(x: LargePizza.size/self.crustView.frame.width, y: LargePizza.size/self.crustView.frame.height)
+                self.crustView.transform = self.crustView.transform.scaledBy(x: LargePizza.diamater/self.crustView.frame.width, y: LargePizza.diamater/self.crustView.frame.height)
             }
-            selectedPizza = LargePizza()
+            selectedPizza = .Large
         }
     }
 
     @IBAction func smallButton(_ sender: UIButton) {
-        updatePriceLabel(size: .SmallPizza)
-        onChangeCrustSize(size: .SmallPizza)
+        updatePriceLabel(size: .Small)
+        onChangeCrustSize(size: .Small)
     }
 
     @IBAction func mediumButton(_ sender: UIButton) {
-        updatePriceLabel(size: .MediumPizza)
-        onChangeCrustSize(size: .MediumPizza)
+        updatePriceLabel(size: .Medium)
+        onChangeCrustSize(size: .Medium)
     }
 
     @IBAction func largeButton(_ sender: UIButton) {
-        updatePriceLabel(size: .LargePizza)
-        onChangeCrustSize(size: .LargePizza)
+        updatePriceLabel(size: .Large)
+        onChangeCrustSize(size: .Large)
     }
 
     func addToCart() {
@@ -88,6 +105,7 @@ class BuildViewController: UIViewController {
             }
         } completion: { _ in
             self.modelController.cartItems += 1
+            self.modelController.cartTotalPrice += self.selectedPizzaPrice()
             self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItems)
             self.resetViewSettings()
         }
@@ -95,14 +113,14 @@ class BuildViewController: UIViewController {
 
     func resetViewSettings() {
         crustView.transform = crustView.transform.scaledBy(x: 1/K.pizzaInBoxRatio, y: 1/K.pizzaInBoxRatio)
-        self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: -300)
+        boxTop.transform = boxTop.transform.translatedBy(x: 0, y: -300)
         boxBottom.transform = boxBottom.transform.scaledBy(x: 1/K.boxRatio, y: 1/K.boxRatio)
         boxTop.transform = boxTop.transform.scaledBy(x: 1/K.boxRatio, y: 1/K.boxRatio)
-        
+        updatePriceLabel(size: .Medium)
+        onChangeCrustSize(size: .Medium)
         crustView.alpha = 1
         boxBottom.alpha = 1
-        boxTop.alpha = 1
-        
+        boxTop.alpha = 0
     }
 
     @IBAction func addToCartButton(_ sender: Any) {
@@ -112,9 +130,9 @@ class BuildViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view loaded")
-        inCartLabel.text = String(modelController.cartItems)
+        inCartLabel.text = String(modelController.cartTotalPrice)
         modelController.didCartUpdate = {
-            self.inCartLabel.text = String(self.modelController.cartItems)
+            self.inCartLabel.text = String(self.modelController.cartTotalPrice)
         }
         let mushroomDrag = UIDragInteraction(delegate: self)
         let pepperDrag = UIDragInteraction(delegate: self)
@@ -135,11 +153,11 @@ extension BuildViewController: UIDragInteractionDelegate {
         func selectTopping() {
             switch touchedImage.tag {
             case 0:
-                selectedTopping = Toppings.Mushroom
+                currentTopping = Toppings.Mushroom
             case 1:
-                selectedTopping = Toppings.Pepper
+                currentTopping = Toppings.Pepper
             default:
-                selectedTopping = nil
+                currentTopping = nil
             }
         }
         selectTopping()
@@ -196,9 +214,9 @@ extension BuildViewController: UIDropInteractionDelegate {
                 self.crustView.image = newImage
             }
             duplicateTopImage(toppingCoordinates: MediumPizza.toppingCoordinates)
-            print(self.selectedTopping as Any)
-            self.selectedPizza.toppings.append(self.selectedTopping!)
-            print(self.selectedPizza.toppings as Any)
+            print(self.currentTopping as Any)
+            self.selectedToppings.append(self.currentTopping!)
+            print(self.selectedToppings as Any)
         }
     }
 }
