@@ -10,7 +10,7 @@ import Foundation
 class ModelController {
     static let shared = ModelController()
     var didCartUpdate: (() -> Void)?
-    var cartItems: Int = 0 {
+    var cartItemCount: Int = 0 {
         didSet {
             didCartUpdate?()
         }
@@ -21,6 +21,10 @@ class ModelController {
             didCartUpdate?()
         }
     }
+    
+    var cartItems = []
+    
+    
 
     
 }

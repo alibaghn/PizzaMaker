@@ -18,7 +18,7 @@ class BuildViewController: UIViewController {
     var modelController = ModelController.shared
     var currentTopping: Toppings?
     var selectedToppings: [Toppings] = []
-    var selectedPizza : PizzaSize = .Medium
+    var selectedPizza: PizzaSize = .Medium
 
     func updatePriceLabel(size: PizzaSize) {
         switch size {
@@ -33,7 +33,7 @@ class BuildViewController: UIViewController {
             priceLabel.text = LargePizza.priceLabel + "$"
         }
     }
-    
+
     func selectedPizzaPrice() -> Double {
         switch selectedPizza {
         case .Small:
@@ -42,8 +42,6 @@ class BuildViewController: UIViewController {
             return 20
         case .Large:
             return 30
-        default:
-            return 0
         }
     }
 
@@ -104,9 +102,9 @@ class BuildViewController: UIViewController {
                 self.boxTop.alpha = 0
             }
         } completion: { _ in
-            self.modelController.cartItems += 1
+            self.modelController.cartItemCount += 1
             self.modelController.cartTotalPrice += self.selectedPizzaPrice()
-            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItems)
+            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItemCount)
             self.resetViewSettings()
         }
     }

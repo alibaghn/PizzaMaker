@@ -18,6 +18,6 @@ class CartViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        inCartLabel.text = String(modelController.cartItems)
+        inCartLabel.text = String(modelController.cartTotalPrice)
     }
 }
