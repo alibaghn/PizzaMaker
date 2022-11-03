@@ -21,10 +21,10 @@ class ModelController {
             didCartUpdate?()
         }
     }
-    
-    var cartItems = []
-    
-    
 
-    
+    var cartItems: [Pizza] = [] {
+        didSet {
+            didCartUpdate?()
+        }
+    }
 }

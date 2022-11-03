@@ -15,74 +15,41 @@ class BuildViewController: UIViewController {
     @IBOutlet var boxBottom: UIImageView!
     @IBOutlet var boxTop: UIImageView!
     @IBOutlet var inCartLabel: UILabel!
-    var modelController = ModelController.shared
     var currentTopping: Toppings?
-    var selectedToppings: [Toppings] = []
-    var selectedPizza: PizzaSize = .Medium
+    var currentPizza: Pizza = MediumPizza()
+    var modelController = ModelController.shared
 
-    func updatePriceLabel(size: PizzaSize) {
-        switch size {
-        case .Small:
-            selectedPizza = .Small
-            priceLabel.text = SmallPizza.priceLabel + "$"
-        case .Medium:
-            selectedPizza = .Medium
-            priceLabel.text = MediumPizza.priceLabel + "$"
-        case .Large:
-            selectedPizza = .Large
-            priceLabel.text = LargePizza.priceLabel + "$"
-        }
+    func updatePriceLabel() {
+        priceLabel.text = currentPizza.priceLabel + "$"
     }
 
-    func selectedPizzaPrice() -> Double {
-        switch selectedPizza {
-        case .Small:
-            return 10
-        case .Medium:
-            return 20
-        case .Large:
-            return 30
-        }
+    func currentPizzaPrice() -> Double {
+        return currentPizza.price
     }
 
-    func onChangeCrustSize(size: PizzaSize) {
-        switch size {
-        case .Small:
-            UIView.animate(withDuration: K.animationDuration) {
-                self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-                self.crustView.transform = self.crustView.transform.scaledBy(x: SmallPizza.diameter/self.crustView.frame.width, y: SmallPizza.diameter/self.crustView.frame.height)
-            }
-            selectedPizza = .Small
-
-        case .Medium:
-            UIView.animate(withDuration: K.animationDuration) {
-                self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-                self.crustView.transform = self.crustView.transform.scaledBy(x: MediumPizza.diameter/self.crustView.frame.width, y: MediumPizza.diameter/self.crustView.frame.height)
-            }
-            selectedPizza = .Medium
-
-        case .Large:
-            UIView.animate(withDuration: K.animationDuration) {
-                self.crustView.transform = self.crustView.transform.rotated(by: .pi)
-                self.crustView.transform = self.crustView.transform.scaledBy(x: LargePizza.diamater/self.crustView.frame.width, y: LargePizza.diamater/self.crustView.frame.height)
-            }
-            selectedPizza = .Large
+    func onChangeCrustSize() {
+        UIView.animate(withDuration: K.animationDuration) {
+            self.crustView.transform = self.crustView.transform.rotated(by: .pi)
+            self.crustView.transform = self.crustView.transform.scaledBy(x: self.currentPizza.diameter/self.crustView.frame.width, y: self.currentPizza.diameter/self.crustView.frame.height)
         }
     }
 
     @IBAction func smallButton(_ sender: UIButton) {
-        updatePriceLabel(size: .Small)
-        onChangeCrustSize(size: .Small)
+        currentPizza = SmallPizza()
+        updatePriceLabel()
+        onChangeCrustSize()
     }
 
     @IBAction func mediumButton(_ sender: UIButton) {
-        updatePriceLabel(size: .Medium)
-        onChangeCrustSize(size: .Medium)
+        currentPizza = MediumPizza()
+        updatePriceLabel()
+        onChangeCrustSize()
     }
 
     @IBAction func largeButton(_ sender: UIButton) {
-        updatePriceLabel(size: .Large)
-        onChangeCrustSize(size: .Large)
+        currentPizza = LargePizza()
+        updatePriceLabel()
+        onChangeCrustSize()
     }
 
     func addToCart() {
@@ -103,7 +70,8 @@ class BuildViewController: UIViewController {
             }
         } completion: { _ in
             self.modelController.cartItemCount += 1
-            self.modelController.cartTotalPrice += self.selectedPizzaPrice()
+            self.modelController.cartTotalPrice += self.currentPizza.price
+            self.modelController.cartItems.append(SmallPizza())
             self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItemCount)
             self.resetViewSettings()
         }
@@ -114,8 +82,8 @@ class BuildViewController: UIViewController {
         boxTop.transform = boxTop.transform.translatedBy(x: 0, y: -300)
         boxBottom.transform = boxBottom.transform.scaledBy(x: 1/K.boxRatio, y: 1/K.boxRatio)
         boxTop.transform = boxTop.transform.scaledBy(x: 1/K.boxRatio, y: 1/K.boxRatio)
-        updatePriceLabel(size: .Medium)
-        onChangeCrustSize(size: .Medium)
+        updatePriceLabel()
+        onChangeCrustSize()
         crustView.alpha = 1
         boxBottom.alpha = 1
         boxTop.alpha = 0
@@ -211,10 +179,8 @@ extension BuildViewController: UIDropInteractionDelegate {
                 UIGraphicsEndImageContext()
                 self.crustView.image = newImage
             }
-            duplicateTopImage(toppingCoordinates: MediumPizza.toppingCoordinates)
-            print(self.currentTopping as Any)
-            self.selectedToppings.append(self.currentTopping!)
-            print(self.selectedToppings as Any)
+            duplicateTopImage(toppingCoordinates: self.currentPizza.toppingCoordinates)
+            self.currentPizza.toppings.append(self.currentTopping!)
         }
     }
 }
