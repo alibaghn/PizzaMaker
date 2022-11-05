@@ -75,6 +75,7 @@ class BuildViewController: UIViewController {
             print(self.modelController.cartItems.count)
             self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItemCount)
             self.resetViewSettings()
+            self.crustView.image = UIImage(named: "crust")
         }
     }
 
@@ -160,27 +161,20 @@ extension BuildViewController: UIDropInteractionDelegate {
             let droppedImages = imageItems as! [UIImage]
             let droppedImage = droppedImages.first!
             let bottomImage = self.crustView.image
-            let topImage = droppedImage
             let size = self.crustView.frame.size
             UIGraphicsBeginImageContextWithOptions(size, false, 0)
             let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
             bottomImage!.draw(in: areaSize)
 
-            func duplicateTopImage(toppingCoordinates: [(Double, Double)]) {
+            func createViewFromImage(toppingCoordinates: [(Double, Double)]) {
                 for tuple in toppingCoordinates {
-                    let customToppingView: UIImageView = .init(frame: CGRect(x: self.crustView.frame.midX + tuple.0, y: self.crustView.frame.midY + tuple.1 - 10, width: 100, height: 100))
-                    customToppingView.image = droppedImage
-                    self.view.addSubview(customToppingView)
-                    UIView.animate(withDuration: K.animationDuration) {
-                        customToppingView.transform = customToppingView.transform.translatedBy(x: 0, y: +10)
-                    }
-                    topImage.draw(in: CGRect(x: areaSize.midX + tuple.0, y: areaSize.midY + tuple.1, width: 100, height: 100), blendMode: .normal, alpha: 1)
+                    droppedImage.draw(in: CGRect(x: areaSize.midX + tuple.0, y: areaSize.midY + tuple.1, width: 100, height: 100), blendMode: .normal, alpha: 1)
                 }
                 let newImage = UIGraphicsGetImageFromCurrentImageContext()!
                 UIGraphicsEndImageContext()
                 self.crustView.image = newImage
             }
-            duplicateTopImage(toppingCoordinates: self.currentPizza.toppingCoordinates)
+            createViewFromImage(toppingCoordinates: self.currentPizza.toppingCoordinates)
             self.currentPizza.toppings.append(self.currentTopping!)
         }
     }
