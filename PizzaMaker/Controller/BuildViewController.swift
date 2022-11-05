@@ -71,7 +71,8 @@ class BuildViewController: UIViewController {
         } completion: { _ in
             self.modelController.cartItemCount += 1
             self.modelController.cartTotalPrice += self.currentPizza.price
-            self.modelController.cartItems.append(SmallPizza())
+            self.modelController.cartItems.append(self.currentPizza)
+            print(self.modelController.cartItems.count)
             self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItemCount)
             self.resetViewSettings()
         }

@@ -53,13 +53,6 @@ struct LargePizza: Pizza {
         return String(format: "%.0f", price)
     }
 
-//    static var price = 30.0
-//    var toppings: [Toppings] = []
-//    static var diamater = 300.0
-//    static var toppingCoordinates: [(Double, Double)] = [(-50, -50), (10, 10), (-110, -110), (10, -110), (-110, 10)]
-//    static var priceLabel: String {
-//        return String(format: "%.0f", price)
-//    }
 }
 
 protocol Pizza {
