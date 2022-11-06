@@ -40,7 +40,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath)
-        cell.textLabel?.text = ModelController.shared.cartItems[indexPath.row].name
+        cell.textLabel?.text = ModelController.shared.cartItems[indexPath.row].name +  " (\(ModelController.shared.cartItems[indexPath.row].priceLabel))"
         cell.detailTextLabel?.text = ModelController.shared.cartItems[indexPath.row].toppingString
         return cell
     }
