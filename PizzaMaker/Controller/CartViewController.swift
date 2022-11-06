@@ -21,7 +21,7 @@ class CartViewController: UIViewController {
             // TODO: how to update list items after adding to cart e.g how to update tableviewdata.count?
             self.tableView.reloadData()
         }
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TableViewCell")
+
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -40,7 +40,8 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath)
-        cell.textLabel?.text = ModelController.shared.cartItems[indexPath.row].priceLabel
+        cell.textLabel?.text = ModelController.shared.cartItems[indexPath.row].name
+        cell.detailTextLabel?.text = ModelController.shared.cartItems[indexPath.row].priceLabel
         return cell
     }
 }

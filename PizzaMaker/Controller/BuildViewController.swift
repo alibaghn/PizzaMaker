@@ -166,7 +166,7 @@ extension BuildViewController: UIDropInteractionDelegate {
             let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
             bottomImage!.draw(in: areaSize)
 
-            func createViewFromImage(toppingCoordinates: [(Double, Double)]) {
+            func mergeToppingWithCrust(toppingCoordinates: [(Double, Double)]) {
                 for tuple in toppingCoordinates {
                     droppedImage.draw(in: CGRect(x: areaSize.midX + tuple.0, y: areaSize.midY + tuple.1, width: 100, height: 100), blendMode: .normal, alpha: 1)
                 }
@@ -174,7 +174,7 @@ extension BuildViewController: UIDropInteractionDelegate {
                 UIGraphicsEndImageContext()
                 self.crustView.image = newImage
             }
-            createViewFromImage(toppingCoordinates: self.currentPizza.toppingCoordinates)
+            mergeToppingWithCrust(toppingCoordinates: self.currentPizza.toppingCoordinates)
             self.currentPizza.toppings.append(self.currentTopping!)
         }
     }

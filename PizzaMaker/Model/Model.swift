@@ -16,6 +16,7 @@ enum Toppings {
 }
 
 struct SmallPizza: Pizza {
+    let name = "Small Pizza"
     var price: Double = 10.0
     var toppings: [Toppings] = []
 
@@ -29,6 +30,7 @@ struct SmallPizza: Pizza {
 }
 
 struct MediumPizza: Pizza {
+    let name = "Medium Pizza"
     var price: Double = 20.0
     var toppings: [Toppings] = []
 
@@ -42,6 +44,7 @@ struct MediumPizza: Pizza {
 }
 
 struct LargePizza: Pizza {
+    let name = "Large Pizza"
     var price: Double = 30.0
     var toppings: [Toppings] = []
 
@@ -56,6 +59,7 @@ struct LargePizza: Pizza {
 }
 
 protocol Pizza {
+    var name: String {get}
     var toppings: [Toppings] {get set}
     var price: Double { get }
      var diameter: Double { get }
