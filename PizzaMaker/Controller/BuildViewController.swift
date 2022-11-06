@@ -15,6 +15,9 @@ class BuildViewController: UIViewController {
     @IBOutlet var boxBottom: UIImageView!
     @IBOutlet var boxTop: UIImageView!
     @IBOutlet var inCartLabel: UILabel!
+    @IBOutlet var smallButton: UIButton!
+    @IBOutlet var mediumButton: UIButton!
+    @IBOutlet var largeButton: UIButton!
     var currentTopping: Toppings?
     var currentPizza: Pizza = MediumPizza()
     var modelController = ModelController.shared
@@ -33,24 +36,51 @@ class BuildViewController: UIViewController {
             self.crustView.transform = self.crustView.transform.scaledBy(x: self.currentPizza.diameter/self.crustView.frame.width, y: self.currentPizza.diameter/self.crustView.frame.height)
         }
     }
-
-    @IBAction func smallButton(_ sender: UIButton) {
-        currentPizza = SmallPizza()
-        updatePriceLabel()
-        onChangeCrustSize()
+    
+    
+    @IBAction func changePizzaSize(sender: UIButton) {
+        smallButton.backgroundColor = .white
+        mediumButton.backgroundColor = .white
+        largeButton.backgroundColor = .white
+        switch sender {
+        case smallButton:
+            currentPizza = SmallPizza()
+            smallButton.backgroundColor = .green
+            updatePriceLabel()
+            onChangeCrustSize()
+        case mediumButton:
+            currentPizza = MediumPizza()
+            mediumButton.backgroundColor = .green
+            updatePriceLabel()
+            onChangeCrustSize()
+        case largeButton:
+            currentPizza = LargePizza()
+            largeButton.backgroundColor = .green
+            updatePriceLabel()
+            onChangeCrustSize()
+        default:
+            break
+        }
+        
     }
 
-    @IBAction func mediumButton(_ sender: UIButton) {
-        currentPizza = MediumPizza()
-        updatePriceLabel()
-        onChangeCrustSize()
-    }
-
-    @IBAction func largeButton(_ sender: UIButton) {
-        currentPizza = LargePizza()
-        updatePriceLabel()
-        onChangeCrustSize()
-    }
+//    @IBAction func smallButton(_ sender: UIButton) {
+//        currentPizza = SmallPizza()
+//        updatePriceLabel()
+//        onChangeCrustSize()
+//    }
+//
+//    @IBAction func mediumButton(_ sender: UIButton) {
+//        currentPizza = MediumPizza()
+//        updatePriceLabel()
+//        onChangeCrustSize()
+//    }
+//
+//    @IBAction func largeButton(_ sender: UIButton) {
+//        currentPizza = LargePizza()
+//        updatePriceLabel()
+//        onChangeCrustSize()
+//    }
 
     func addToCart() {
         UIView.animateKeyframes(withDuration: 4, delay: 0, options: []) {
