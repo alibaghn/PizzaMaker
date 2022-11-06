@@ -53,7 +53,7 @@ class BuildViewController: UIViewController {
     }
 
     func addToCart() {
-        UIView.animateKeyframes(withDuration: 8, delay: 0, options: []) {
+        UIView.animateKeyframes(withDuration: 4, delay: 0, options: []) {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
                 self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio)
                 self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
