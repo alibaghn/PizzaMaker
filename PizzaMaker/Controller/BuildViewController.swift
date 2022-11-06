@@ -97,6 +97,7 @@ class BuildViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeCircle()
         print("view loaded")
         inCartLabel.text = String(modelController.cartTotalPrice)
         modelController.didCartUpdate = {
@@ -177,5 +178,23 @@ extension BuildViewController: UIDropInteractionDelegate {
             mergeToppingWithCrust(toppingCoordinates: self.currentPizza.toppingCoordinates)
             self.currentPizza.toppings.append(self.currentTopping!)
         }
+    }
+}
+
+// MARK: - Styling
+
+extension BuildViewController {
+    func makeCircle() {
+        mushroomView.layer.borderWidth = 1.0
+        mushroomView.layer.masksToBounds = false
+        mushroomView.layer.borderColor = UIColor.white.cgColor
+        mushroomView.layer.cornerRadius = mushroomView.frame.width/2
+        mushroomView.clipsToBounds = true
+
+        pepperView.layer.borderWidth = 1.0
+        pepperView.layer.masksToBounds = false
+        pepperView.layer.borderColor = UIColor.white.cgColor
+        pepperView.layer.cornerRadius = mushroomView.frame.width/2
+        pepperView.clipsToBounds = true
     }
 }
