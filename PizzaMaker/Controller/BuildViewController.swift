@@ -11,6 +11,7 @@ class BuildViewController: UIViewController {
     @IBOutlet var crustView: UIImageView!
     @IBOutlet var mushroomView: UIImageView!
     @IBOutlet var pepperView: UIImageView!
+    @IBOutlet var peperoniView: UIImageView!
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var boxBottom: UIImageView!
     @IBOutlet var boxTop: UIImageView!
@@ -36,24 +37,30 @@ class BuildViewController: UIViewController {
             self.crustView.transform = self.crustView.transform.scaledBy(x: self.currentPizza.diameter/self.crustView.frame.width, y: self.currentPizza.diameter/self.crustView.frame.height)
         }
     }
-    
-    
+
     @IBAction func changePizzaSize(sender: UIButton) {
         smallButton.backgroundColor = .white
         mediumButton.backgroundColor = .white
         largeButton.backgroundColor = .white
         switch sender {
         case smallButton:
-            currentPizza = SmallPizza()
+            var smallPizza = SmallPizza()
+            smallPizza.toppings = currentPizza.toppings
+            currentPizza = smallPizza
             smallButton.backgroundColor = .green
             updatePriceLabel()
             onChangeCrustSize()
         case mediumButton:
-            currentPizza = MediumPizza()
+            var mediumPizza = MediumPizza()
+            mediumPizza.toppings = currentPizza.toppings
+            currentPizza = mediumPizza
             mediumButton.backgroundColor = .green
             updatePriceLabel()
             onChangeCrustSize()
         case largeButton:
+            var largePizza = LargePizza()
+            largePizza.toppings = currentPizza.toppings
+            currentPizza = largePizza
             currentPizza = LargePizza()
             largeButton.backgroundColor = .green
             updatePriceLabel()
@@ -61,26 +68,7 @@ class BuildViewController: UIViewController {
         default:
             break
         }
-        
     }
-
-//    @IBAction func smallButton(_ sender: UIButton) {
-//        currentPizza = SmallPizza()
-//        updatePriceLabel()
-//        onChangeCrustSize()
-//    }
-//
-//    @IBAction func mediumButton(_ sender: UIButton) {
-//        currentPizza = MediumPizza()
-//        updatePriceLabel()
-//        onChangeCrustSize()
-//    }
-//
-//    @IBAction func largeButton(_ sender: UIButton) {
-//        currentPizza = LargePizza()
-//        updatePriceLabel()
-//        onChangeCrustSize()
-//    }
 
     func addToCart() {
         UIView.animateKeyframes(withDuration: 4, delay: 0, options: []) {
@@ -119,6 +107,8 @@ class BuildViewController: UIViewController {
         crustView.alpha = 1
         boxBottom.alpha = 1
         boxTop.alpha = 0
+        currentPizza.toppings = []
+        
     }
 
     @IBAction func addToCartButton(_ sender: Any) {
@@ -127,7 +117,7 @@ class BuildViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeCircle()
+        formatViews()
         print("view loaded")
         inCartLabel.text = String(modelController.cartTotalPrice)
         modelController.didCartUpdate = {
@@ -135,8 +125,10 @@ class BuildViewController: UIViewController {
         }
         let mushroomDrag = UIDragInteraction(delegate: self)
         let pepperDrag = UIDragInteraction(delegate: self)
+        let peperoniDrag = UIDragInteraction(delegate: self)
         mushroomView.addInteraction(mushroomDrag)
         pepperView.addInteraction(pepperDrag)
+        peperoniView.addInteraction(peperoniDrag)
         let toppingDrop = UIDropInteraction(delegate: self)
         view.addInteraction(toppingDrop)
     }
@@ -155,6 +147,8 @@ extension BuildViewController: UIDragInteractionDelegate {
                 currentTopping = Toppings.Mushroom
             case 1:
                 currentTopping = Toppings.Pepper
+            case 2:
+                currentTopping = Toppings.Peperoni
             default:
                 currentTopping = nil
             }
@@ -214,7 +208,7 @@ extension BuildViewController: UIDropInteractionDelegate {
 // MARK: - Styling
 
 extension BuildViewController {
-    func makeCircle() {
+    func formatViews() {
         mushroomView.layer.borderWidth = 1.0
         mushroomView.layer.masksToBounds = false
         mushroomView.layer.borderColor = UIColor.white.cgColor
@@ -226,5 +220,24 @@ extension BuildViewController {
         pepperView.layer.borderColor = UIColor.white.cgColor
         pepperView.layer.cornerRadius = mushroomView.frame.width/2
         pepperView.clipsToBounds = true
+        
+        peperoniView.layer.borderWidth = 1.0
+        peperoniView.layer.masksToBounds = false
+        peperoniView.layer.borderColor = UIColor.white.cgColor
+        peperoniView.layer.cornerRadius = peperoniView.frame.width/2
+        peperoniView.clipsToBounds = true
+
+        smallButton.layer.cornerRadius = 5
+        smallButton.layer.borderWidth = 1
+        smallButton.layer.borderColor = UIColor.black.cgColor
+
+        mediumButton.layer.cornerRadius = 5
+        mediumButton.layer.borderWidth = 1
+        mediumButton.layer.borderColor = UIColor.black.cgColor
+        mediumButton.backgroundColor = .green
+
+        largeButton.layer.cornerRadius = 5
+        largeButton.layer.borderWidth = 1
+        largeButton.layer.borderColor = UIColor.black.cgColor
     }
 }

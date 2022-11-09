@@ -12,7 +12,7 @@ enum PizzaSize {
 }
 
 enum Toppings {
-    case Mushroom, Pepper
+    case Mushroom, Pepper, Peperoni
 }
 
 struct SmallPizza: Pizza {
