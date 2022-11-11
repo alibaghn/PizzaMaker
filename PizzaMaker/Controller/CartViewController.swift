@@ -25,33 +25,34 @@ class CartViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
-
 }
 
 // MARK: - Tableview Delegate
 
 extension CartViewController: UITableViewDataSource, UITableViewDelegate {
+    func deleteItem(_ indexPath: IndexPath) {
+        modelController.cartTotalPrice -= ModelController.shared.cartItems[indexPath.row].price
+        modelController.cartItems.remove(at: indexPath.row)
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ModelController.shared.cartItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath)
-        cell.textLabel?.text = ModelController.shared.cartItems[indexPath.row].name +  " (\(ModelController.shared.cartItems[indexPath.row].priceLabel))"
+        cell.textLabel?.text = ModelController.shared.cartItems[indexPath.row].name + " (\(ModelController.shared.cartItems[indexPath.row].priceLabel))"
         cell.detailTextLabel?.text = ModelController.shared.cartItems[indexPath.row].toppingString
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            modelController.cartTotalPrice -= ModelController.shared.cartItems[indexPath.row].price
-            modelController.cartItems.remove(at: indexPath.row)
-             
+        if editingStyle == .delete {
+            deleteItem(indexPath)
         }
     }
-    
 }

@@ -108,7 +108,6 @@ class BuildViewController: UIViewController {
         boxBottom.alpha = 1
         boxTop.alpha = 0
         currentPizza.toppings = []
-        
     }
 
     @IBAction func addToCartButton(_ sender: Any) {
@@ -220,7 +219,7 @@ extension BuildViewController {
         pepperView.layer.borderColor = UIColor.white.cgColor
         pepperView.layer.cornerRadius = mushroomView.frame.width/2
         pepperView.clipsToBounds = true
-        
+
         peperoniView.layer.borderWidth = 1.0
         peperoniView.layer.masksToBounds = false
         peperoniView.layer.borderColor = UIColor.white.cgColor
