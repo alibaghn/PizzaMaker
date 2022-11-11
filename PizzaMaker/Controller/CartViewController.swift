@@ -41,4 +41,17 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         cell.detailTextLabel?.text = ModelController.shared.cartItems[indexPath.row].toppingString
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            modelController.cartTotalPrice -= ModelController.shared.cartItems[indexPath.row].price
+            modelController.cartItems.remove(at: indexPath.row)
+             
+        }
+    }
+    
 }
