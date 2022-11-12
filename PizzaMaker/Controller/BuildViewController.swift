@@ -182,22 +182,26 @@ extension BuildViewController: UIDropInteractionDelegate {
 
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         session.loadObjects(ofClass: UIImage.self) { imageItems in
+
             let droppedImages = imageItems as! [UIImage]
             let droppedImage = droppedImages.first!
             let bottomImage = self.crustView.image
             let size = self.crustView.frame.size
             UIGraphicsBeginImageContextWithOptions(size, false, 0)
-            let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-            bottomImage!.draw(in: areaSize)
+            let drawingArea = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+
+            bottomImage!.draw(in: drawingArea)
 
             func mergeToppingWithCrust(toppingCoordinates: [(Double, Double)]) {
                 for tuple in toppingCoordinates {
-                    droppedImage.draw(in: CGRect(x: areaSize.midX + tuple.0, y: areaSize.midY + tuple.1, width: 100, height: 100), blendMode: .normal, alpha: 1)
+                    droppedImage.draw(in: CGRect(x: drawingArea.midX + tuple.0, y: drawingArea.midY + tuple.1, width: 50, height: 50), blendMode: .normal, alpha: 1)
                 }
+
                 let newImage = UIGraphicsGetImageFromCurrentImageContext()!
                 UIGraphicsEndImageContext()
                 self.crustView.image = newImage
             }
+
             mergeToppingWithCrust(toppingCoordinates: self.currentPizza.toppingCoordinates)
             self.currentPizza.toppings.append(self.currentTopping!)
         }
