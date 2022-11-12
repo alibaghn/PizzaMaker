@@ -18,10 +18,10 @@ class CartViewController: UIViewController {
         modelController.didCartItemUpdate = {
             print("item added")
             self.inCartLabel.text = String(self.modelController.cartTotalPrice)
-            // TODO: how to update list items after adding to cart e.g how to update tableviewdata.count?
             self.tableView.reloadData()
         }
-
+        let nib = UINib(nibName: "CustomCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "CustomCell")
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -40,9 +40,9 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath)
-        cell.textLabel?.text = ModelController.shared.cartItems[indexPath.row].name + " (\(ModelController.shared.cartItems[indexPath.row].priceLabel))"
-        cell.detailTextLabel?.text = ModelController.shared.cartItems[indexPath.row].toppingString
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
+        cell.cellTitle.text = ModelController.shared.cartItems[indexPath.row].name + " (\(ModelController.shared.cartItems[indexPath.row].priceLabel))"
+        cell.cellDetail.text = ModelController.shared.cartItems[indexPath.row].toppingString
         return cell
     }
 
