@@ -17,6 +17,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nWx-kP-A9e">
+                                <rect key="frame" x="0.0" y="48" width="414" height="765"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CR5-XV-Rpn" userLabel="TopView">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="382.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksA-rC-815" userLabel="BottomView">
+                                        <rect key="frame" x="0.0" y="382.5" width="414" height="382.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="CR5-XV-Rpn" firstAttribute="leading" secondItem="nWx-kP-A9e" secondAttribute="leading" id="EH2-3R-Igt"/>
+                                    <constraint firstAttribute="trailing" secondItem="CR5-XV-Rpn" secondAttribute="trailing" id="KRQ-9D-i7L"/>
+                                    <constraint firstAttribute="bottom" secondItem="ksA-rC-815" secondAttribute="bottom" id="LiC-6C-vL4"/>
+                                    <constraint firstItem="ksA-rC-815" firstAttribute="top" secondItem="CR5-XV-Rpn" secondAttribute="bottom" id="Niv-oP-SmJ"/>
+                                    <constraint firstItem="ksA-rC-815" firstAttribute="top" secondItem="CR5-XV-Rpn" secondAttribute="bottom" id="X5L-Ug-34e"/>
+                                    <constraint firstItem="CR5-XV-Rpn" firstAttribute="top" secondItem="nWx-kP-A9e" secondAttribute="top" id="Xc1-DE-Fpp"/>
+                                    <constraint firstAttribute="trailing" secondItem="ksA-rC-815" secondAttribute="trailing" id="wHe-Wc-1cL"/>
+                                    <constraint firstItem="ksA-rC-815" firstAttribute="leading" secondItem="nWx-kP-A9e" secondAttribute="leading" id="yhP-ZO-nDN"/>
+                                </constraints>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6TO-Yt-wQz">
                                 <rect key="frame" x="110" y="496" width="35" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -134,6 +157,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nWx-kP-A9e" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4x5-MT-1fg"/>
+                            <constraint firstItem="nWx-kP-A9e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Zc8-uJ-afJ"/>
+                            <constraint firstItem="nWx-kP-A9e" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="cJb-RG-dTA"/>
+                            <constraint firstItem="nWx-kP-A9e" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gmY-62-tle"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Build" id="vRm-Uy-kkn"/>
                     <connections>
