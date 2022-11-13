@@ -75,7 +75,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="4Az-8X-iOw">
-                                                        <rect key="frame" x="122.5" y="51.5" width="169.5" height="30"/>
+                                                        <rect key="frame" x="122.5" y="68.5" width="169.5" height="30"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="faO-q3-8Am">
                                                                 <rect key="frame" x="0.0" y="0.0" width="169.5" height="30"/>
@@ -112,7 +112,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="WNb-CD-QCa">
-                                                        <rect key="frame" x="39.5" y="112.5" width="335" height="167"/>
+                                                        <rect key="frame" x="39.5" y="146.5" width="335" height="167"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cGG-uY-f5U">
                                                                 <rect key="frame" x="0.0" y="0.0" width="89" height="167"/>
@@ -174,7 +174,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjX-kp-N0E">
-                                                        <rect key="frame" x="150" y="311" width="114.5" height="20"/>
+                                                        <rect key="frame" x="150" y="362" width="114.5" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="vtb-dv-8W4"/>
                                                         </constraints>
@@ -184,15 +184,6 @@
                                                             <action selector="addToCartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9vA-e6-m4Q"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0a-Vs-jGJ">
-                                                        <rect key="frame" x="186.5" y="362" width="41.5" height="20"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="7Zg-zJ-nW8"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -221,7 +212,6 @@
                         <outlet property="boxBottom" destination="llA-Rq-SRM" id="Npd-DB-n6T"/>
                         <outlet property="boxTop" destination="hy9-MD-jcC" id="2sH-bt-Wsj"/>
                         <outlet property="crustView" destination="bE5-TZ-9gW" id="YdI-YC-a5K"/>
-                        <outlet property="inCartLabel" destination="a0a-Vs-jGJ" id="LKa-Hx-FAS"/>
                         <outlet property="largeButton" destination="TKI-MU-TIX" id="8O4-hn-aNC"/>
                         <outlet property="mediumButton" destination="zUo-G5-2NS" id="xaD-50-1Ki"/>
                         <outlet property="mushroomView" destination="9Pz-03-AWJ" id="ldb-vx-mq4"/>

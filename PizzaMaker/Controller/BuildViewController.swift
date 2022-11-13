@@ -15,7 +15,6 @@ class BuildViewController: UIViewController {
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var boxBottom: UIImageView!
     @IBOutlet var boxTop: UIImageView!
-    @IBOutlet var inCartLabel: UILabel!
     @IBOutlet var smallButton: UIButton!
     @IBOutlet var mediumButton: UIButton!
     @IBOutlet var largeButton: UIButton!
@@ -118,10 +117,6 @@ class BuildViewController: UIViewController {
         super.viewDidLoad()
         formatViews()
         print("view loaded")
-        inCartLabel.text = String(modelController.cartTotalPrice)
-        modelController.didCartUpdate = {
-            self.inCartLabel.text = String(self.modelController.cartTotalPrice)
-        }
         let mushroomDrag = UIDragInteraction(delegate: self)
         let pepperDrag = UIDragInteraction(delegate: self)
         let peperoniDrag = UIDragInteraction(delegate: self)
