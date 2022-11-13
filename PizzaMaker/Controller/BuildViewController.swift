@@ -8,6 +8,7 @@
 import UIKit
 
 class BuildViewController: UIViewController {
+   
     @IBOutlet var crustView: UIImageView!
     @IBOutlet var mushroomView: UIImageView!
     @IBOutlet var pepperView: UIImageView!
@@ -23,7 +24,7 @@ class BuildViewController: UIViewController {
     var modelController = ModelController.shared
 
     func updatePriceLabel() {
-        priceLabel.text = currentPizza.priceLabel + "$"
+        priceLabel.text = currentPizza.priceLabel
     }
 
     func currentPizzaPrice() -> Double {
@@ -70,6 +71,7 @@ class BuildViewController: UIViewController {
     }
 
     func addToCart() {
+        
         UIView.animateKeyframes(withDuration: 4, delay: 0, options: []) {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
                 self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio)
