@@ -221,6 +221,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Build" id="vRm-Uy-kkn"/>
                     <connections>
+                        <outlet property="bottomView" destination="ksA-rC-815" id="IE4-fr-MMi"/>
                         <outlet property="boxBottom" destination="llA-Rq-SRM" id="Npd-DB-n6T"/>
                         <outlet property="boxTop" destination="hy9-MD-jcC" id="2sH-bt-Wsj"/>
                         <outlet property="crustView" destination="bE5-TZ-9gW" id="lRk-Fg-f2h"/>

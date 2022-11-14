@@ -9,6 +9,7 @@ import UIKit
 
 class BuildViewController: UIViewController {
    
+    @IBOutlet var bottomView: UIView!
     @IBOutlet var crustView: UIImageView!
     @IBOutlet var mushroomView: UIImageView!
     @IBOutlet var pepperView: UIImageView!
@@ -73,6 +74,7 @@ class BuildViewController: UIViewController {
     func addToCart() {
         
         UIView.animateKeyframes(withDuration: 4, delay: 0, options: []) {
+            self.bottomView.alpha = 0
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
                 self.crustView.transform = self.crustView.transform.scaledBy(x: K.pizzaInBoxRatio, y: K.pizzaInBoxRatio)
                 self.boxBottom.transform = self.boxBottom.transform.scaledBy(x: K.boxRatio, y: K.boxRatio)
@@ -88,6 +90,8 @@ class BuildViewController: UIViewController {
                 self.boxTop.alpha = 0
             }
         } completion: { _ in
+            self.bottomView.alpha = 1
+            self.currentPizza.image = self.crustView.image
             self.modelController.cartItemCount += 1
             self.modelController.cartTotalPrice += self.currentPizza.price
             self.modelController.cartItems.append(self.currentPizza)

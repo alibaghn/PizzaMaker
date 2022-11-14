@@ -11,8 +11,8 @@ class CustomCell: UITableViewCell {
     
     @IBOutlet var cellTitle: UILabel!
     @IBOutlet var cellDetail: UILabel!
-
-
+    @IBOutlet var cellImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

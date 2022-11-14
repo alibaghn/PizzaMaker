@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum PizzaSize {
     case Small, Medium, Large
@@ -16,6 +17,7 @@ enum Toppings {
 }
 
 struct SmallPizza: Pizza {
+    var image: UIImage?
     let name = "Small Pizza"
     var price: Double = 10.0
     var toppings: [Toppings] = []
@@ -33,6 +35,7 @@ struct SmallPizza: Pizza {
 }
 
 struct MediumPizza: Pizza {
+    var image: UIImage?
     let name = "Medium Pizza"
     var price: Double = 20.0
     var toppings: [Toppings] = []
@@ -50,6 +53,7 @@ struct MediumPizza: Pizza {
 }
 
 struct LargePizza: Pizza {
+    var image: UIImage?
     let name = "Large Pizza"
     var price: Double = 30.0
     var toppings: [Toppings] = []
@@ -68,6 +72,7 @@ struct LargePizza: Pizza {
 }
 
 protocol Pizza {
+    var image: UIImage? { get set }
     var toppingString: String { get }
     var name: String { get }
     var toppings: [Toppings] { get set }

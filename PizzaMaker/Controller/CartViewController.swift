@@ -43,6 +43,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
         cell.cellTitle.text = ModelController.shared.cartItems[indexPath.row].name + " (\(ModelController.shared.cartItems[indexPath.row].priceLabel))"
         cell.cellDetail.text = ModelController.shared.cartItems[indexPath.row].toppingString
+        cell.cellImageView.image = ModelController.shared.cartItems[indexPath.row].image
         return cell
     }
 
