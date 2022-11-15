@@ -100,15 +100,16 @@ class BuildViewController: UIViewController {
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
                 self.boxTop.transform = self.boxTop.transform.translatedBy(x: 0, y: 300)
                 self.boxTop.alpha = 0
+                
             }
         } completion: { _ in
             self.bottomView.alpha = 1
             self.currentPizza.image = self.crustView.image
-            self.modelController.cartItemCount += 1
+//            self.modelController.cartItemCount += 1
             self.modelController.cartTotalPrice += self.currentPizza.price
             self.modelController.cartItems.append(self.currentPizza)
             print(self.modelController.cartItems.count)
-            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItemCount)
+            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItems.count)
             self.resetViewSettings()
             self.crustView.image = UIImage(named: "crust")
         }

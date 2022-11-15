@@ -17,6 +17,7 @@ class CartViewController: UIViewController {
         inCartLabel.text = String(modelController.cartTotalPrice)
         modelController.didCartItemUpdate = {
             print("item added")
+            self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItems.count)
             self.inCartLabel.text = String(self.modelController.cartTotalPrice)
             self.tableView.reloadData()
         }

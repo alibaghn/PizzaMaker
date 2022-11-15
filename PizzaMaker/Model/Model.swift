@@ -26,7 +26,7 @@ struct SmallPizza: Pizza {
     }
 
     var diameter: Double = 200.0
-
+    
     var toppingCoordinates: [(Double, Double)] = [(-30, -30), (25, 25), (-80, -80), (25, -80), (-80, 25)]
 
     var priceLabel: String {
