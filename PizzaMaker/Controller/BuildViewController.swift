@@ -8,11 +8,10 @@
 import UIKit
 
 class BuildViewController: UIViewController {
-   
     @IBOutlet var bottomView: UIView!
     @IBOutlet var crustView: UIImageView!
     @IBOutlet var mushroomView: UIImageView!
-    @IBOutlet var pepperView: UIImageView!
+    @IBOutlet var onionView: UIImageView!
     @IBOutlet var peperoniView: UIImageView!
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var boxBottom: UIImageView!
@@ -23,6 +22,20 @@ class BuildViewController: UIViewController {
     var currentTopping: Toppings?
     var currentPizza: Pizza = MediumPizza()
     var modelController = ModelController.shared
+
+    func toppingSize() -> Double {
+        switch currentPizza {
+        case is SmallPizza:
+            return 40
+        case is MediumPizza:
+            return 50
+        case is LargePizza:
+            return 60
+        default:
+            return 50
+        }
+    
+    }
 
     func updatePriceLabel() {
         priceLabel.text = currentPizza.priceLabel
@@ -72,7 +85,6 @@ class BuildViewController: UIViewController {
     }
 
     func addToCart() {
-        
         UIView.animateKeyframes(withDuration: 4, delay: 0, options: []) {
             self.bottomView.alpha = 0
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
@@ -127,7 +139,7 @@ class BuildViewController: UIViewController {
         let pepperDrag = UIDragInteraction(delegate: self)
         let peperoniDrag = UIDragInteraction(delegate: self)
         mushroomView.addInteraction(mushroomDrag)
-        pepperView.addInteraction(pepperDrag)
+        onionView.addInteraction(pepperDrag)
         peperoniView.addInteraction(peperoniDrag)
         let toppingDrop = UIDropInteraction(delegate: self)
         view.addInteraction(toppingDrop)
@@ -183,19 +195,17 @@ extension BuildViewController: UIDropInteractionDelegate {
 
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         session.loadObjects(ofClass: UIImage.self) { imageItems in
-
             let droppedImages = imageItems as! [UIImage]
             let droppedImage = droppedImages.first!
             let bottomImage = self.crustView.image
             let size = self.crustView.frame.size
             UIGraphicsBeginImageContextWithOptions(size, false, 0)
             let drawingArea = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-
             bottomImage!.draw(in: drawingArea)
 
             func mergeToppingWithCrust(toppingCoordinates: [(Double, Double)]) {
                 for tuple in toppingCoordinates {
-                    droppedImage.draw(in: CGRect(x: drawingArea.midX + tuple.0, y: drawingArea.midY + tuple.1, width: 50, height: 50), blendMode: .normal, alpha: 1)
+                    droppedImage.draw(in: CGRect(x: drawingArea.midX + tuple.0, y: drawingArea.midY + tuple.1, width: self.toppingSize(), height: self.toppingSize()), blendMode: .normal, alpha: 1)
                 }
 
                 let newImage = UIGraphicsGetImageFromCurrentImageContext()!
@@ -219,11 +229,11 @@ extension BuildViewController {
         mushroomView.layer.cornerRadius = mushroomView.frame.width/2
         mushroomView.clipsToBounds = true
 
-        pepperView.layer.borderWidth = 1.0
-        pepperView.layer.masksToBounds = false
-        pepperView.layer.borderColor = UIColor.white.cgColor
-        pepperView.layer.cornerRadius = mushroomView.frame.width/2
-        pepperView.clipsToBounds = true
+        onionView.layer.borderWidth = 1.0
+        onionView.layer.masksToBounds = false
+        onionView.layer.borderColor = UIColor.white.cgColor
+        onionView.layer.cornerRadius = mushroomView.frame.width/2
+        onionView.clipsToBounds = true
 
         peperoniView.layer.borderWidth = 1.0
         peperoniView.layer.masksToBounds = false

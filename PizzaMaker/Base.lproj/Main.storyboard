@@ -114,20 +114,20 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="WNb-CD-QCa">
-                                                        <rect key="frame" x="39.5" y="146.5" width="335" height="167"/>
+                                                        <rect key="frame" x="51" y="146.5" width="312.5" height="167"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cGG-uY-f5U">
-                                                                <rect key="frame" x="0.0" y="0.0" width="89" height="167"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="167"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pepper" translatesAutoresizingMaskIntoConstraints="NO" id="0n8-tW-ALK">
-                                                                        <rect key="frame" x="8" y="0.0" width="73" height="83.5"/>
+                                                                    <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onion" translatesAutoresizingMaskIntoConstraints="NO" id="0n8-tW-ALK">
+                                                                        <rect key="frame" x="4" y="0.0" width="73" height="83.5"/>
                                                                         <color key="backgroundColor" red="0.94509803920000002" green="0.93333333330000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="73" id="m3w-S5-cM5"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red Pepper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtm-6k-vg2">
-                                                                        <rect key="frame" x="0.0" y="83.5" width="89" height="83.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Onion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtm-6k-vg2">
+                                                                        <rect key="frame" x="18" y="83.5" width="45.5" height="83.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -138,17 +138,17 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XbR-Qq-TvM">
-                                                                <rect key="frame" x="123" y="0.0" width="89" height="167"/>
+                                                                <rect key="frame" x="115.5" y="0.0" width="81.5" height="167"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mushroom" translatesAutoresizingMaskIntoConstraints="NO" id="9Pz-03-AWJ">
-                                                                        <rect key="frame" x="8" y="0.0" width="73" height="83.5"/>
+                                                                        <rect key="frame" x="4" y="0.0" width="73" height="83.5"/>
                                                                         <color key="backgroundColor" red="0.94509803920000002" green="0.93333333330000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="73" id="h3S-g9-xSV"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mushroom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7x-Fd-cZD">
-                                                                        <rect key="frame" x="4" y="83.5" width="81.5" height="83.5"/>
+                                                                        <rect key="frame" x="0.0" y="83.5" width="81.5" height="83.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -156,17 +156,17 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bAY-oA-Bue">
-                                                                <rect key="frame" x="246" y="0.0" width="89" height="167"/>
+                                                                <rect key="frame" x="231" y="0.0" width="81.5" height="167"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="peperoni" translatesAutoresizingMaskIntoConstraints="NO" id="9Nf-b9-kwp">
-                                                                        <rect key="frame" x="8" y="0.0" width="73" height="83.5"/>
+                                                                        <rect key="frame" x="4" y="0.0" width="73" height="83.5"/>
                                                                         <color key="backgroundColor" red="0.94509803920000002" green="0.93333333330000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="73" id="hq8-eR-LDs"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peperoni" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X10-FL-FBn">
-                                                                        <rect key="frame" x="11" y="83.5" width="67.5" height="83.5"/>
+                                                                        <rect key="frame" x="7" y="83.5" width="67.5" height="83.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -228,8 +228,8 @@
                         <outlet property="largeButton" destination="TKI-MU-TIX" id="8O4-hn-aNC"/>
                         <outlet property="mediumButton" destination="zUo-G5-2NS" id="xaD-50-1Ki"/>
                         <outlet property="mushroomView" destination="9Pz-03-AWJ" id="ldb-vx-mq4"/>
+                        <outlet property="onionView" destination="0n8-tW-ALK" id="UG8-hj-7FU"/>
                         <outlet property="peperoniView" destination="9Nf-b9-kwp" id="yf2-8e-R2t"/>
-                        <outlet property="pepperView" destination="0n8-tW-ALK" id="UG8-hj-7FU"/>
                         <outlet property="priceLabel" destination="DnE-fx-j1S" id="Y7o-cf-xLT"/>
                         <outlet property="smallButton" destination="6TO-Yt-wQz" id="4pc-Gq-lhh"/>
                     </connections>
@@ -297,8 +297,8 @@
         <image name="box_inside" width="500" height="478"/>
         <image name="crust" width="909" height="909"/>
         <image name="mushroom" width="296" height="296"/>
+        <image name="onion" width="550" height="550"/>
         <image name="peperoni" width="1000" height="1000"/>
-        <image name="pepper" width="900" height="658"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

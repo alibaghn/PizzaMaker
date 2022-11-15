@@ -27,7 +27,7 @@ struct SmallPizza: Pizza {
 
     var diameter: Double = 200.0
 
-    var toppingCoordinates: [(Double, Double)] = [(-35, -35), (25, 25), (-95, -95), (25, -95), (-95, 25)]
+    var toppingCoordinates: [(Double, Double)] = [(-30, -30), (30, 30), (-85, -85), (30, -85), (-85, 30)]
 
     var priceLabel: String {
         return String(format: "%.0f", price) + "$"
@@ -45,7 +45,7 @@ struct MediumPizza: Pizza {
 
     var diameter: Double = 250.0
 
-    var toppingCoordinates: [(Double, Double)] = [(-35, -35), (25, 25), (-95, -95), (25, -95), (-95, 25)]
+    var toppingCoordinates: [(Double, Double)] = [(-30, -30), (30, 30), (-85, -85), (30, -85), (-85, 30)]
 
     var priceLabel: String {
         return String(format: "%.0f", price) + "$"
@@ -64,7 +64,7 @@ struct LargePizza: Pizza {
 
     var diameter: Double = 300.0
 
-    var toppingCoordinates: [(Double, Double)] = [(-35, -35), (25, 25), (-95, -95), (25, -95), (-95, 25)]
+    var toppingCoordinates: [(Double, Double)] = [(-30, -30), (30, 30), (-85, -85), (30, -85), (-85, 30)]
 
     var priceLabel: String {
         return String(format: "%.0f", price) + "$"
