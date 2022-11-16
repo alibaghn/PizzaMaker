@@ -8,17 +8,17 @@
 import UIKit
 
 class CartViewController: UIViewController {
-    @IBOutlet var inCartLabel: UILabel!
     let modelController = ModelController.shared
     @IBOutlet var tableView: UITableView!
+    var tableHeader: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         print("cart view loaded")
-        inCartLabel.text = String(modelController.cartTotalPrice)
+        tableHeader = "Total: " + "$" + String(modelController.cartTotalPrice)
         modelController.didCartItemUpdate = {
             print("item added")
             self.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = String(self.modelController.cartItems.count)
-            self.inCartLabel.text = String(self.modelController.cartTotalPrice)
+            self.tableHeader = "Total: " + "$" + String(self.modelController.cartTotalPrice)
             self.tableView.reloadData()
         }
         let nib = UINib(nibName: "CustomCell", bundle: nil)
@@ -56,5 +56,9 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             deleteItem(indexPath)
         }
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return tableHeader
     }
 }
