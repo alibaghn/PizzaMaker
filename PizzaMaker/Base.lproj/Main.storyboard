@@ -246,13 +246,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGz-25-iYI">
-                                <rect key="frame" x="127" y="707.5" width="153" height="20.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Mop-kd-wnU">
                                 <rect key="frame" x="53.5" y="217.5" width="307" height="461"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -273,7 +266,6 @@
                     <tabBarItem key="tabBarItem" title="Cart" id="zTA-Cb-fIv"/>
                     <connections>
                         <outlet property="tableView" destination="Mop-kd-wnU" id="hRH-S1-p0I"/>
-                        <outlet property="totalPriceLabel" destination="JGz-25-iYI" id="VSO-yf-ifK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozo-Wh-s5h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

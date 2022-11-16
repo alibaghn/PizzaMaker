@@ -14,6 +14,7 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("cart view loaded")
+        
         tableHeader = "Total: " + "$" + String(modelController.cartTotalPrice)
         modelController.didCartItemUpdate = {
             print("item added")
@@ -61,4 +62,6 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return tableHeader
     }
+    
+    
 }

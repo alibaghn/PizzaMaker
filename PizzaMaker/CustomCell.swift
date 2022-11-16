@@ -13,6 +13,12 @@ class CustomCell: UITableViewCell {
     @IBOutlet var cellDetail: UILabel!
     @IBOutlet var cellImageView: UIImageView!
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
