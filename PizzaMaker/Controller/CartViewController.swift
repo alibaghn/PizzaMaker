@@ -14,7 +14,7 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("cart view loaded")
-        
+
         tableHeader = "Total: " + "$" + String(modelController.cartTotalPrice)
         modelController.didCartItemUpdate = {
             print("item added")
@@ -44,7 +44,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
         cell.cellTitle.text = ModelController.shared.cartItems[indexPath.row].name + " (\(ModelController.shared.cartItems[indexPath.row].priceLabel))"
-        cell.cellDetail.text = ModelController.shared.cartItems[indexPath.row].toppingString
+        cell.cellDetail.text = "Toppings: " + ModelController.shared.cartItems[indexPath.row].toppingString
         cell.cellImageView.image = ModelController.shared.cartItems[indexPath.row].image
         return cell
     }
@@ -62,6 +62,4 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return tableHeader
     }
-    
-    
 }
