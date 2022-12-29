@@ -217,7 +217,6 @@ extension BuildViewController: UIDropInteractionDelegate {
                 
             }
             
-        
 
             mergeToppingWithCrust(toppingCoordinates: self.currentPizza.toppingCoordinates)
             self.currentPizza.toppings.append(self.currentTopping!)
@@ -270,7 +269,7 @@ extension UIImage {
         rotatedViewBox.transform = t
         let rotatedSize: CGSize = rotatedViewBox.frame.size
         //Create the bitmap context
-        UIGraphicsBeginImageContext(rotatedSize)
+        UIGraphicsBeginImageContextWithOptions(rotatedSize, false, 0)
         let bitmap: CGContext = UIGraphicsGetCurrentContext()!
         //Move the origin to the middle of the image so we will rotate and scale around the center.
         bitmap.translateBy(x: rotatedSize.width / 2, y: rotatedSize.height / 2)
