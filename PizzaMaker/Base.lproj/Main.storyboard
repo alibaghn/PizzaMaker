@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Build-->
+        <!--Build View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="BuildViewController" customModule="PizzaMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -219,7 +219,7 @@
                             <constraint firstItem="nWx-kP-A9e" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gmY-62-tle"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Build" id="vRm-Uy-kkn"/>
+                    <tabBarItem key="tabBarItem" title="" image="chart.pie.fill" catalog="system" id="vRm-Uy-kkn"/>
                     <connections>
                         <outlet property="addToCartButton" destination="kjX-kp-N0E" id="tc7-oS-7QD"/>
                         <outlet property="bottomView" destination="ksA-rC-815" id="IE4-fr-MMi"/>
@@ -239,7 +239,7 @@
             </objects>
             <point key="canvasLocation" x="-49.275362318840585" y="-1312.5"/>
         </scene>
-        <!--Cart-->
+        <!--Cart View Controller-->
         <scene sceneID="mLi-ep-bM6">
             <objects>
                 <viewController id="jXf-Jn-DU3" customClass="CartViewController" customModule="PizzaMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -264,7 +264,7 @@
                             <constraint firstItem="Mop-kd-wnU" firstAttribute="centerX" secondItem="l9u-of-K4v" secondAttribute="centerX" id="6Rk-cc-SOT"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Cart" id="zTA-Cb-fIv"/>
+                    <tabBarItem key="tabBarItem" title="" image="cart.fill" catalog="system" id="zTA-Cb-fIv"/>
                     <connections>
                         <outlet property="tableView" destination="Mop-kd-wnU" id="hRH-S1-p0I"/>
                     </connections>
@@ -295,6 +295,8 @@
     <resources>
         <image name="box_front" width="2672" height="2672"/>
         <image name="box_inside" width="500" height="478"/>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
+        <image name="chart.pie.fill" catalog="system" width="128" height="123"/>
         <image name="crust" width="909" height="909"/>
         <image name="mushroom" width="296" height="296"/>
         <image name="onion" width="550" height="550"/>
