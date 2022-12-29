@@ -159,7 +159,7 @@ extension BuildViewController: UIDragInteractionDelegate {
             case 0:
                 currentTopping = Toppings.Mushroom
             case 1:
-                currentTopping = Toppings.Pepper
+                currentTopping = Toppings.Onion
             case 2:
                 currentTopping = Toppings.Peperoni
             default:
@@ -206,13 +206,18 @@ extension BuildViewController: UIDropInteractionDelegate {
 
             func mergeToppingWithCrust(toppingCoordinates: [(Double, Double)]) {
                 for tuple in toppingCoordinates {
+                    
                     droppedImage.draw(in: CGRect(x: drawingArea.midX + tuple.0, y: drawingArea.midY + tuple.1, width: self.toppingSize(), height: self.toppingSize()), blendMode: .normal, alpha: 1)
                 }
-
+                
+            
                 let newImage = UIGraphicsGetImageFromCurrentImageContext()!
+                self.crustView.image = newImage.imageRotatedByDegrees(oldImage: newImage, deg: 30.0)
                 UIGraphicsEndImageContext()
-                self.crustView.image = newImage
+                
             }
+            
+        
 
             mergeToppingWithCrust(toppingCoordinates: self.currentPizza.toppingCoordinates)
             self.currentPizza.toppings.append(self.currentTopping!)
@@ -254,5 +259,30 @@ extension BuildViewController {
         largeButton.layer.cornerRadius = 5
         largeButton.layer.borderWidth = 1
         largeButton.layer.borderColor = UIColor.black.cgColor
+    }
+}
+
+extension UIImage {
+    func imageRotatedByDegrees(oldImage: UIImage, deg degrees: CGFloat) -> UIImage {
+        //Calculate the size of the rotated view's containing box for our drawing space
+        let rotatedViewBox: UIView = UIView(frame: CGRect(x: 0, y: 0, width: oldImage.size.width, height: oldImage.size.height))
+        let t: CGAffineTransform = CGAffineTransform(rotationAngle: degrees * CGFloat(Double.pi / 180))
+        rotatedViewBox.transform = t
+        let rotatedSize: CGSize = rotatedViewBox.frame.size
+        //Create the bitmap context
+        UIGraphicsBeginImageContext(rotatedSize)
+        let bitmap: CGContext = UIGraphicsGetCurrentContext()!
+        //Move the origin to the middle of the image so we will rotate and scale around the center.
+        bitmap.translateBy(x: rotatedSize.width / 2, y: rotatedSize.height / 2)
+        //Rotate the image context
+        bitmap.rotate(by: (degrees * CGFloat(Double.pi / 180)))
+        //Now, draw the rotated/scaled image into the context
+        bitmap.scaleBy(x: 1.0, y: -1.0)
+        
+        bitmap.draw(self.cgImage!, in: CGRect(x: -rotatedSize.width / 2, y: -rotatedSize.height / 2, width: rotatedSize.width, height: rotatedSize.height))
+        
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }
