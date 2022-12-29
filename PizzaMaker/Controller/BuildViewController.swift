@@ -19,9 +19,11 @@ class BuildViewController: UIViewController {
     @IBOutlet var smallButton: UIButton!
     @IBOutlet var mediumButton: UIButton!
     @IBOutlet var largeButton: UIButton!
+    @IBOutlet var addToCartButton: UIButton!
     var currentTopping: Toppings?
     var currentPizza: Pizza = MediumPizza()
     var modelController = ModelController.shared
+    
 
     func toppingSize() -> Double {
         switch currentPizza {
@@ -228,6 +230,7 @@ extension BuildViewController: UIDropInteractionDelegate {
 
 extension BuildViewController {
     func formatViews() {
+        
         mushroomView.layer.borderWidth = 1.0
         mushroomView.layer.masksToBounds = false
         mushroomView.layer.borderColor = UIColor.white.cgColor
@@ -258,6 +261,14 @@ extension BuildViewController {
         largeButton.layer.cornerRadius = 5
         largeButton.layer.borderWidth = 1
         largeButton.layer.borderColor = UIColor.black.cgColor
+        
+        
+        var config = UIButton.Configuration.filled()
+        config.baseBackgroundColor = .systemBlue
+        config.baseForegroundColor = .white
+        config.titlePadding = 10.0
+        config.cornerStyle = .capsule
+        addToCartButton.configuration = config
     }
 }
 
